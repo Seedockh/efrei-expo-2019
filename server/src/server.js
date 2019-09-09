@@ -8,7 +8,7 @@ import encodings from 'iconv-lite/encodings';
 import { GraphQLServer } from 'graphql-yoga'
 import schema from './schema'
 import { db } from './data/initdb'
-const PORT = 4000
+const port = process.env.PORT || 8080;
 
 iconv.encodings = encodings;
 
@@ -23,6 +23,6 @@ server.get("/api", (request, response) => {
   response.send(marked(file.toString()));
 });
 
-server.start({ port: PORT }, () => {
-	console.log(`Server started on port ${PORT} => http://localhost:${PORT}`)
+server.start({port: port}, () => {
+	console.log(`Server started on port ${port}`)
 })
