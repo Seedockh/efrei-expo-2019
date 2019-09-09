@@ -1,33 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { useStateValue } from '../../hooks/state';
-import { BottomNavigation } from 'react-native-paper';
-import productsList from '../../screens/products/productsList';
+import React from 'react';
 import viewProfile from '../../screens/profile/viewProfile';
+import editProfile from '../../screens/profile/editProfile';
+import createProfile from '../../screens/profile/createProfile';
+import productsList from '../../screens/products/productsList';
+import viewProduct from '../../screens/products/viewProduct';
+import createPost from '../../screens/products/createPost';
+import editPost from '../../screens/products/editPost';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-// Routes
-const productsRoute = isLogged => isLogged ? productsList : productsList;
-const profileRoute = isLogged => isLogged ? viewProfile : viewProfile;
+const ProfileStack = createStackNavigator({
+    viewProfile: {
+        screen: viewProfile
+    },
+    editProfile: {
+        screen: editProfile
+    },
+    createProfile: {
+        screen: createProfile
+    }
+}, {
+    initialRouteName: 'viewProfile'
+});
 
-export default function Navigation() {
-    const [index, setIndex] = useState(0);
-    const [routes] = useState([
-        { key: 'products', title: 'Products', icon: 'search' },
-		{ key: 'profile', title: 'Profile', icon: 'account-circle' }
-    ]);
-	const [{ token, isLogged }, dispatch] = useStateValue();
+const ProductsStack = createStackNavigator({
+    productsList: {
+        screen: productsList
+    },
+    viewProduct: {
+        screen: viewProduct
+    },
+    createPost: {
+        screen: createPost
+    },
+    editPost: {
+        screen: editPost
+    }
+}, {
+    initialRouteName: 'productsList'
+});
 
-    const _handleIndexChange = index => setIndex(index);
+const TabNavigator = createBottomTabNavigator({
+    Profile: {
+        screen: ProfileStack
+    },
+    Products: {
+        screen: ProductsStack
+    }
+}, {
+    initialRouteName: 'Profile',
+});
 
-    const _renderScene = BottomNavigation.SceneMap({ products: productsRoute(isLogged), profile: profileRoute(isLogged) })
+const AppContainer = createAppContainer(TabNavigator);
 
-    return (
-        <BottomNavigation
-            navigationState={{ index, routes }}
-            onIndexChange={_handleIndexChange}
-            renderScene={_renderScene}
-            barStyle={{backgroundColor: 'black'}}
-            activeColor={'lightgreen'}
-            inactiveColor={'white'}
-        />     
-    );
-}
+export default AppContainer;
