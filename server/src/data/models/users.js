@@ -34,7 +34,7 @@ export default class Users extends Model {
       indexes: [
         {
           unique: true,
-          fields: ["firstname"]
+          fields: ["firstname", "lastname", "city"]
         }
       ],
     })
