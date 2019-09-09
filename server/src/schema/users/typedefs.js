@@ -1,4 +1,4 @@
-// NOTE : User type imported from types folder
+// NOTE : Users type imported from types folder
 
 const typeDefs = /* GraphQL */ `
   schema {
@@ -7,34 +7,35 @@ const typeDefs = /* GraphQL */ `
   }
 
   type Query {
-    users: [User!]!
-    user(id: ID!): User
-    search(q: String!): [User!]!
+    users: [Users!]!
+    user(id: ID!): Users
   }
 
   type Mutation {
-    editUser(id: ID!, data: EditUserInput!): User!
-    storeUserExpoToken(token: String!): StoreUserExpoTokenResponse!
-    sendNotification(token: String!): StoreUserExpoTokenResponse!
+    editUser(id: ID!, data: EditUserInput!): ResultMessage!
+    createUser(data: EditUserInput!): ResultMessage!
+    deleteUser(id: ID!): ResultMessage!
   }
 
   # ---
 
-  type User {
+  type Users {
     id: ID!
-    firstName: String!
-    lastName: String!
+    firstname: String!
+    lastname: String!
+    city: String!
+  }
+
+  type ResultMessage {
+    success: String
+    error: String
   }
 
   input EditUserInput {
-    firstName: String
-    lastName: String
+    firstname: String
+    lastname: String
+    city: String
   }
-
-  type StoreUserExpoTokenResponse {
-    success: Boolean!
-  }
-
 `
 
 export default typeDefs
