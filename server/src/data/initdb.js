@@ -4,7 +4,9 @@ import Users from './models/users';
 
 const config = fs.existsSync(__dirname + '/config.json') ? require('./config.json').dev : console.log('data/config.json not found !');
 
-export const db = (config) ? new Sequelize(
+export const db = process.env.NODE_ENV === "production" ?
+  new Sequelize(process.env.DATABASE_URL, {dialect: 'postgres'})
+  : new Sequelize(
     config.database,
     config.user,
     config.dialect,
@@ -16,7 +18,7 @@ export const db = (config) ? new Sequelize(
             timestamps: false
         }
     }
-  ) : null;
+  );
 
 db.authenticate()
     .then( (err)=> {console.log('Connection has been establihed successfully.');
