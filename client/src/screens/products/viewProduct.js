@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider  } from 'react-native-paper';
+import { Provider, Button } from 'react-native-paper';
 import { Text, Image } from 'react-native';
 
 const Screen = ({ navigation }) => {
@@ -18,6 +18,7 @@ const Screen = ({ navigation }) => {
                 style={{height: 200}}
                 source={{ uri: 'https://picsum.photos/701' }}
             />
+            <Button icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile')}>Seller Profile</Button>      
         </Provider>
     )
 }

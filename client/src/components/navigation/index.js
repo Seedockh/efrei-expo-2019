@@ -2,6 +2,7 @@ import React from 'react';
 import viewProfile from '../../screens/profile/viewProfile';
 import editProfile from '../../screens/profile/editProfile';
 import createProfile from '../../screens/profile/createProfile';
+import sellerProfile from '../../screens/profile/sellerProfile';
 import productsList from '../../screens/products/productsList';
 import viewProduct from '../../screens/products/viewProduct';
 import createPost from '../../screens/products/createPost';
@@ -19,6 +20,9 @@ const ProfileStack = createStackNavigator({
     },
     createProfile: {
         screen: createProfile
+    },
+    sellerProfile: {
+        screen: sellerProfile
     }
 }, {
     initialRouteName: 'viewProfile'
@@ -49,7 +53,7 @@ const TabNavigator = createBottomTabNavigator({
         screen: ProductsStack
     }
 }, {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Products',
 });
 
 const AppContainer = createAppContainer(TabNavigator);

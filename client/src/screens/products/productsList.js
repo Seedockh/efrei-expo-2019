@@ -8,6 +8,8 @@ const Screen = ({ navigation }) => {
     return (
         <Provider>
             {isLogged && (
+                <>
+                <Button icon="add" mode="contained" onPress={() => navigation.navigate('createPost')}>Add a new product</Button>
                 <Card>
                     <Card.Content>
                         <Title>Product n°1</Title>
@@ -18,6 +20,7 @@ const Screen = ({ navigation }) => {
                         <Button onPress={() => navigation.navigate('viewProduct')}>More...</Button>
                     </Card.Actions>
                 </Card>
+                </>
             )}
             {!isLogged && (
                 <Button icon="edit" mode="contained" onPress={() => navigation.navigate('createProfile')}>Create a new profile</Button>
