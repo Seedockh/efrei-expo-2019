@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import { useQuery } from '@apollo/react-hooks';
-import * as queries from '../../apollo/queries'
+import * as queries from '../../apollo/queries';
 
 const productForm = () => {
     const [{ productTitle, productCategory, productPrice, productImage }, dispatch] = useStateValue();

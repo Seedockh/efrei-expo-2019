@@ -43,8 +43,8 @@ const App = () => {
 			}
 		],
 		productTitle: "",
-		productCategory: null,
-		productPrice: "0",
+		productCategory: 1,
+		productPrice: "1",
 		productImage: "",
 		productId: null
 	};

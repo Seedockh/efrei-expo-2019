@@ -4,6 +4,7 @@ import { useStateValue } from '../../hooks/state';
 import ProductForm from '../../components/productForm';
 import * as mutations from '../../apollo/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import * as queries from '../../apollo/queries';
 
 const Screen = ({ navigation }) => {
     const [{ productTitle, productCategory, productPrice, productImage, id }, dispatch] = useStateValue();
@@ -22,7 +23,10 @@ const Screen = ({ navigation }) => {
                     CategoryId: productCategory,
                     UserId: id
 				}
-            }
+            },
+            refetchQueries:[{
+                query: queries.GET_POSTS
+            }]
         })
         await dispatch({
             type: 'setState',

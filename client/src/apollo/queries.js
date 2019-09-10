@@ -18,3 +18,16 @@ export const GET_CATEGORIES = gql`
         }
     }
 `
+
+export const GET_POSTS = gql`
+    query {
+        posts {
+            id
+            title
+            price
+            image
+          	CategoryId
+          	UserId
+        }
+    }
+`
