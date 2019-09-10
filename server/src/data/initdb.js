@@ -1,6 +1,7 @@
 import { Sequelize, Op } from 'sequelize';
 import fs from 'fs';
 import Users from './models/users';
+import Posts from './models/posts'
 
 const config = fs.existsSync(__dirname + '/config.json') ? require('./config.json').dev : console.log('data/config.json not found !');
 
@@ -27,3 +28,7 @@ db.authenticate()
 });
 
 Users.init(db);
+Posts.init(db);
+
+Users.hasMany(Posts);
+Posts.belongsTo(Users);

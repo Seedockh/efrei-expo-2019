@@ -16,10 +16,7 @@ const resolvers = {
         city: args.data.city,
       });
       await user.save();
-      return {
-        success: "User created successfully !",
-        error: null,
-      };
+      return user;
     },
 
     editUser: async (obj, args, ctx, info) => {
@@ -30,10 +27,7 @@ const resolvers = {
       }, {
         where: { id: args.id },
       });
-      return {
-        success: "User updated successfully !",
-        error: null,
-      };;
+      return Users.findByPk(args.id);
     },
 
     deleteUser:  async (obj, args, ctx, info) => {

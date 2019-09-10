@@ -12,8 +12,8 @@ const typeDefs = /* GraphQL */ `
   }
 
   type Mutation {
-    editUser(id: ID!, data: EditUserInput!): ResultMessage!
-    createUser(data: EditUserInput!): ResultMessage!
+    editUser(id: ID!, data: EditUserInput!): Users!
+    createUser(data: EditUserInput!): Users!
     deleteUser(id: ID!): ResultMessage!
   }
 
@@ -28,7 +28,6 @@ const typeDefs = /* GraphQL */ `
 
   type ResultMessage {
     success: String
-    error: String
   }
 
   input EditUserInput {
