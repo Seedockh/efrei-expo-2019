@@ -1,13 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-native-paper';
-import { View, Text } from 'react-native'
+import ProfileForm from '../../components/profileForm';
 
-export default function ViewAccount() {
+const Screen = () => {
     return (
         <Provider>
-            <View>
-                <Text>Edit Profile</Text>
-            </View>
+            <ProfileForm/>
         </Provider>
     )
 }
+
+Screen.navigationOptions = {
+    title: 'Edit Profile'
+}
+
+export default Screen;

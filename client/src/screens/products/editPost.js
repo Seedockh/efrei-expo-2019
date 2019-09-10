@@ -1,13 +1,20 @@
 import React from 'react';
-import { Provider } from 'react-native-paper';
-import { View, Text } from 'react-native'
+import { Provider, Button } from 'react-native-paper';
+import { useStateValue } from '../../hooks/state';
+import ProductForm from '../../components/productForm';
 
-export default function ViewAccount() {
+const Screen = ({ navigation }) => {
+    const [{}, dispatch] = useStateValue();
+
     return (
         <Provider>
-            <View>
-                <Text>Edit Post</Text>
-            </View>
+            <ProductForm/>
         </Provider>
     )
 }
+
+Screen.navigationOptions = {
+    title: 'Edit Post / Product'
+}
+
+export default Screen;

@@ -1,13 +1,27 @@
 import React from 'react';
-import { Provider } from 'react-native-paper';
-import { View, Text } from 'react-native'
+import { Provider, Button } from 'react-native-paper';
+import { useStateValue } from '../../hooks/state';
+import ProductForm from '../../components/productForm';
 
-export default function ViewAccount() {
+const Screen = ({ navigation }) => {
+    const [{ isLogged }, dispatch] = useStateValue();
+
+    const createProduct = () => {
+        // If product data are ok :
+        // Create and goBack
+        navigation.goBack();
+    }
+
     return (
         <Provider>
-            <View>
-                <Text>Create Post</Text>
-            </View>
+            <ProductForm/>
+            <Button icon="send" mode="contained" onPress={createProduct}>Create</Button>
         </Provider>
     )
 }
+
+Screen.navigationOptions = {
+    title: 'Create Post / Add Product'
+}
+
+export default Screen;

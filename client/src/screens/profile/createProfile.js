@@ -1,13 +1,31 @@
 import React from 'react';
-import { Provider } from 'react-native-paper';
-import { View, Text } from 'react-native'
+import { Provider, Button } from 'react-native-paper';
+import ProfileForm from '../../components/profileForm';
+import { useStateValue } from '../../hooks/state';
 
-export default function ViewAccount() {
+const Screen = ({ navigation }) => {
+    const [{ isLogged }, dispatch] = useStateValue();
+
+    const createProfile = () => {
+        // If user data are ok and user not already exists:
+        dispatch({
+            type: 'setState',
+            state: 'isLogged',
+            value: true
+        })
+        navigation.goBack();
+    }
+
     return (
         <Provider>
-            <View>
-                <Text>Create Profile</Text>
-            </View>
+            <ProfileForm/>
+            <Button icon="send" mode="contained" onPress={createProfile}>Create</Button>
         </Provider>
     )
 }
+
+Screen.navigationOptions = {
+    title: 'Create Profile'
+}
+
+export default Screen;

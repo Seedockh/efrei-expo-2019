@@ -1,13 +1,32 @@
 import React from 'react';
-import { Provider } from 'react-native-paper';
-import { View, Text } from 'react-native'
+import { Provider, Text, Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { useStateValue } from '../../hooks/state';
 
-export default function ViewAccount() {
+const Screen = ({ navigation }) => {
+    const [{ isLogged, firstName, lastName, city }, dispatch] = useStateValue();
+
     return (
         <Provider>
-            <View>
-                <Text>View Profile</Text>
-            </View>
+            {isLogged && (
+                <View>
+                    <Text>{firstName}</Text>
+                    <Text>{lastName}</Text>
+                    <Text>{city}</Text>
+                    <Button icon="edit" mode="contained" onPress={() => navigation.navigate('editProfile')}>Edit</Button>
+                </View>
+            )}
+            {!isLogged && (
+                <View>
+                    <Button icon="edit" mode="contained" onPress={() => navigation.navigate('createProfile')}>Create a new profile</Button>
+                </View>
+            )}
         </Provider>
     )
 }
+
+Screen.navigationOptions = {
+    title: 'Profile'
+}
+
+export default Screen;
