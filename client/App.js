@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navigation from './src/components/navigation';
 import { StateProvider } from './src/hooks/state';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { BackHandler } from 'react-native'
 
 const client = new ApolloClient({
 	uri: 'https://lebonangle.herokuapp.com/',
 });
 
 const App = () => {
+	const handleBackButton = () => {
+		return true;
+	}
+	
+	useEffect(() => {
+		BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+	})
+
 	const initialState = {
 		isLogged: false,	
 		firstName: "",
 		lastName: "",
 		city: "",
+		id: null,
 		products: [
 			{
 				title: "Product n°1",

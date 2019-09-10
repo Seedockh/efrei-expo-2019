@@ -42,7 +42,7 @@ const ProductsStack = createStackNavigator({
         screen: editPost
     }
 }, {
-    initialRouteName: 'productsList'
+    initialRouteName: 'productsList',
 });
 
 const TabNavigator = createBottomTabNavigator({
