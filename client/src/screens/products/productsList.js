@@ -24,7 +24,7 @@ const Screen = ({ navigation }) => {
                             <Card key={index}>
                                 <Card.Content>
                                     <Title>{post.title}</Title>
-                                    <Paragraph>{post.price}</Paragraph>
+                                    <Paragraph>${post.price}</Paragraph>
                                 </Card.Content>
                                 <Card.Cover source={{ uri: post.image}} />
                                 <Card.Actions>

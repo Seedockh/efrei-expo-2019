@@ -22,9 +22,6 @@ const ProfileStack = createStackNavigator({
     createProfile: {
         screen: createProfile
     },
-    sellerProfile: {
-        screen: sellerProfile
-    },
     Disconnected: {
         screen: Disconnected
     }
@@ -44,6 +41,9 @@ const ProductsStack = createStackNavigator({
     },
     editPost: {
         screen: editPost
+    },
+    sellerProfile: {
+        screen: sellerProfile
     },
     Disconnected: {
         screen: Disconnected

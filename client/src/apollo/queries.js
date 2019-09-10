@@ -39,8 +39,16 @@ export const GET_POST = gql`
             title
             price
             image
-          	CategoryId
-          	UserId
+          	user {
+                id
+                firstname
+                lastname
+                city
+            }
+          	category {
+                id
+                name
+            }
         }
     }
 `
