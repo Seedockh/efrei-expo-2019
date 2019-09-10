@@ -8,6 +8,11 @@ const resolvers = {
   Query: {
     posts: (obj, args, ctx, info) => Posts.findAll(),
     post: (obj, args, ctx, info) => Posts.findByPk(args.id),
+    postsByCategory: (obj, args, ctx, info) => Posts.findAll({
+      where: {
+        CategoryId: args.CategoryId
+      }
+    })
   },
   Mutation: {
     createPost: async (obj, args, ctx, info) => {

@@ -9,6 +9,7 @@ const typeDefs = /* GraphQL */ `
   type Query {
     posts: [Posts!]!
     post(id: ID!): Posts
+    postsByCategory(CategoryId: ID!): [Posts!]
   }
 
   type Mutation {
