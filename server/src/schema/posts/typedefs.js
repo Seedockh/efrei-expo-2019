@@ -1,6 +1,7 @@
-// NOTE : Posts type imported from types folder
+import ResultMessage from '../../types/ResultMessage';
+import Posts from '../../types/Posts'
 
-const typeDefs = /* GraphQL */ `
+const typeDefs = `
   schema {
     query: Query
     mutation: Mutation
@@ -20,33 +21,6 @@ const typeDefs = /* GraphQL */ `
 
   # ---
 
-  type Posts {
-    id: ID!
-    title: String!
-    price: Float!
-    image: String!
-    CategoryId: ID!
-    UserId: ID!
-    user: postUser
-    category: postCategory
-  }
-
-  type postUser {
-    id: ID!
-    firstname: String!
-    lastname: String!
-    city: String!
-  }
-
-  type postCategory {
-    id: ID!
-    name: String!
-  }
-
-  type ResultMessage {
-    success: String
-  }
-
   input EditPostInput {
     title: String
     price: Float
@@ -56,4 +30,4 @@ const typeDefs = /* GraphQL */ `
   }
 `
 
-export default typeDefs
+export default () => [typeDefs, Posts, ResultMessage];
