@@ -18,7 +18,7 @@ const Screen = ({ navigation }) => {
                 </View>
             )}
             {!isLogged && (
-                <Disconnected/>
+                <Disconnected navigation={navigation}/>
             )}
         </Provider>
     )

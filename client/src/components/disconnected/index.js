@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import { View, Text } from 'react-native';
 
-const Disconnected = () => {
+const Disconnected = ({ navigation }) => {
     return (
         <View>
             <Text>You must be logged in to use this app</Text>
