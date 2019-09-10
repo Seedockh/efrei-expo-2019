@@ -53,7 +53,7 @@ const TabNavigator = createBottomTabNavigator({
         screen: ProductsStack
     }
 }, {
-    initialRouteName: 'Products',
+    initialRouteName: 'Profile',
 });
 
 const AppContainer = createAppContainer(TabNavigator);

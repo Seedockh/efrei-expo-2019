@@ -1,13 +1,19 @@
 import React from 'react';
 import Navigation from './src/components/navigation';
 import { StateProvider } from './src/hooks/state';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+const client = new ApolloClient({
+	uri: 'https://lebonangle.herokuapp.com/',
+});
 
 const App = () => {
 	const initialState = {
-		isLogged: true,	
-		firstName: "Jack",
-		lastName: "Sparrow",
-		city: "Caribbean Sea",
+		isLogged: false,	
+		firstName: "",
+		lastName: "",
+		city: "",
 		products: [
 			{
 				title: "Product n°1",
@@ -45,9 +51,11 @@ const App = () => {
 	};
 
 	return (	
-		<StateProvider initialState={initialState} reducer={reducer}>
-			<Navigation style={{fontFamily:'futur,OPTIMA'}}/>
-		</StateProvider>
+		<ApolloProvider client={client}>
+			<StateProvider initialState={initialState} reducer={reducer}>
+				<Navigation style={{fontFamily:'futur,OPTIMA'}}/>
+			</StateProvider>
+		</ApolloProvider>
 	);
 }
 
