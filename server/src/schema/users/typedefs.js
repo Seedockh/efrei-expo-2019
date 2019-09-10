@@ -24,6 +24,20 @@ const typeDefs = /* GraphQL */ `
     firstname: String!
     lastname: String!
     city: String!
+    posts: [userPosts]!
+  }
+
+  type userPosts {
+    id: ID!
+    title: String!
+    price: Float!
+    image: String!
+    category: userPostCategory
+  }
+
+  type userPostCategory {
+    id: ID!
+    name: String!
   }
 
   type ResultMessage {

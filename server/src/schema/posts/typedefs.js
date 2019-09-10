@@ -9,6 +9,7 @@ const typeDefs = /* GraphQL */ `
   type Query {
     posts: [Posts!]!
     post(id: ID!): Posts
+    postsByCategory(CategoryId: ID!): [Posts!]
   }
 
   type Mutation {
@@ -26,6 +27,20 @@ const typeDefs = /* GraphQL */ `
     image: String!
     CategoryId: ID!
     UserId: ID!
+    user: postUser
+    category: postCategory
+  }
+
+  type postUser {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    city: String!
+  }
+
+  type postCategory {
+    id: ID!
+    name: String!
   }
 
   type ResultMessage {
