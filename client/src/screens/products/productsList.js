@@ -24,11 +24,11 @@ const Screen = ({ navigation }) => {
                             <Card key={index}>
                                 <Card.Content>
                                     <Title>{post.title}</Title>
-                                    <Paragraph>{post.price}</Paragraph>
+                                    <Paragraph>${post.price}</Paragraph>
                                 </Card.Content>
                                 <Card.Cover source={{ uri: post.image}} />
                                 <Card.Actions>
-                                    <Button onPress={() => navigation.navigate('viewProduct')}>More...</Button>
+                                    <Button onPress={() => navigation.navigate('viewProduct', { productId: post.id })}>More...</Button>
                                 </Card.Actions>
                             </Card>
                         )

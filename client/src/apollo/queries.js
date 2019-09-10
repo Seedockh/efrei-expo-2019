@@ -31,3 +31,24 @@ export const GET_POSTS = gql`
         }
     }
 `
+
+export const GET_POST = gql`
+    query post($id: ID!) {
+        post(id: $id) {
+            id
+            title
+            price
+            image
+          	user {
+                id
+                firstname
+                lastname
+                city
+            }
+          	category {
+                id
+                name
+            }
+        }
+    }
+`

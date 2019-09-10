@@ -34,3 +34,24 @@ export const CREATE_POST = gql`
         } 
     }
 `
+
+export const DELETE_POST = gql`
+    mutation deletePost($id: ID!) {
+        deletePost(id: $id) {
+            success
+        } 
+    }
+`
+
+export const EDIT_POST = gql`
+    mutation editPost($id: ID!, $data: EditPostInput!) {
+        editPost(id: $id, data: $data) {
+            id
+            title
+            price
+            image
+            CategoryId
+            UserId
+        } 
+    }
+`

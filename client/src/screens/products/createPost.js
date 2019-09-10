@@ -28,11 +28,6 @@ const Screen = ({ navigation }) => {
                 query: queries.GET_POSTS
             }]
         })
-        await dispatch({
-            type: 'setState',
-            state: 'productId',
-            value: result.data.createPost.id
-        })
         navigation.goBack();
     }
 
