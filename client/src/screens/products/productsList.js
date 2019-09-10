@@ -10,7 +10,7 @@ const Screen = ({ navigation }) => {
     const [{ isLogged }, dispatch] = useStateValue();
 
     const { data } = useQuery(queries.GET_POSTS);
-
+    
     return (
         <Provider>
             {isLogged && (

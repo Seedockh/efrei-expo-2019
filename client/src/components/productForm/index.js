@@ -8,9 +8,9 @@ import * as Permissions from 'expo-permissions';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from '../../apollo/queries';
 
-const productForm = () => {
-    const [{ productTitle, productCategory, productPrice, productImage }, dispatch] = useStateValue();
-    
+const productForm = (post) => {
+    const [{ productTitle, productCategory, productPrice, productImage, onEditProduct }, dispatch] = useStateValue();
+
     const setState = (state, value) => {
         return dispatch({
             type: 'setState',
@@ -19,7 +19,16 @@ const productForm = () => {
         })
     }
     
-    const { data } = useQuery(queries.GET_CATEGORIES);
+    useEffect(() => {
+		if (post.post != undefined && productTitle == "" && productImage == "" && onEditProduct) {
+            setState("productTitle", post.post.title)
+            setState("productCategory", post.post.category.id)
+            setState("productPrice", post.post.price.toString())
+            setState("productImage", post.post.image)
+        }
+    })
+    
+    const { data } = useQuery(queries.GET_CATEGORIES);    
 
     getPermissionAsync = async () => {
         if (Constants.platform.ios) {

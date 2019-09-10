@@ -46,7 +46,8 @@ const App = () => {
 		productCategory: 1,
 		productPrice: "1",
 		productImage: "",
-		productId: null
+		productId: null,
+		onEditProduct: false
 	};
 
 	const reducer = (state, action) => {
