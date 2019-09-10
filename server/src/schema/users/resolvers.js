@@ -14,6 +14,9 @@ const resolvers = {
       user.posts.map( post => post.category = Categories.findByPk(post.CategoryId) )
       return user;
     },
+    login: (obj, args, ctx, info) => Users.findOne({
+      where: { firstname: args.data.firstname, lastname: args.data.lastname }
+    }),
   },
   Mutation: {
     createUser: async (obj, args, ctx, info) => {

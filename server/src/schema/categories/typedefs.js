@@ -1,6 +1,7 @@
-// NOTE : Categories type imported from types folder
+import ResultMessage from '../../types/ResultMessage';
+import Categories from '../../types/Categories'
 
-const typeDefs = /* GraphQL */ `
+const typeDefs = `
   schema {
     query: Query
     mutation: Mutation
@@ -19,18 +20,9 @@ const typeDefs = /* GraphQL */ `
 
   # ---
 
-  type Categories {
-    id: ID!
-    name: String!
-  }
-
-  type ResultMessage {
-    success: String
-  }
-
   input EditCategoryInput {
     name: String
   }
 `
 
-export default typeDefs
+export default () => [typeDefs, Categories, ResultMessage]
