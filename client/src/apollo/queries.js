@@ -52,3 +52,24 @@ export const GET_POST = gql`
         }
     }
 `
+
+export const GET_USER = gql`
+    query user($id: ID!) {
+        user(id: $id) {
+            id
+            firstname
+            lastname
+            city
+            posts {
+                id
+                title
+                price
+                image
+                CategoryId
+                category {
+                    name
+                }
+            }
+        }
+    }
+`
