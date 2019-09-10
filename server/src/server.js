@@ -12,7 +12,7 @@ const port = process.env.PORT || 8080;
 
 iconv.encodings = encodings;
 
-db.sync({ force: true });
+db.sync({ force: false });
 
 const server = new GraphQLServer({
   schema,
