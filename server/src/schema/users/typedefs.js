@@ -8,7 +8,7 @@ const typeDefs = /* GraphQL */ `
 
   type Query {
     users: [Users!]!
-    user(id: ID!): Users
+    user(id: ID!): Users!
   }
 
   type Mutation {
