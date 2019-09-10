@@ -7,15 +7,10 @@ import * as queries from '../../apollo/queries';
 const Screen = ({ navigation }) => {
     const { data } = useQuery(queries.GET_USER, {
 		variables: {
-			id: navigation.getParam('sellerId')
-		}
+			id: 1
+        },
+        fetchPolicy: "no-cache"
     });
-
-    alert(data)
-    
-    const getData = () => {
-        alert(data)
-    }
 
     return (
         <Provider>
@@ -30,7 +25,7 @@ const Screen = ({ navigation }) => {
                         renderItem={({item}) => 
                             <List.Item
                                 title={item.title}
-                                description={item.price}
+                                description={`$ ${item.price.toString()}`}
                                 left={props => <List.Icon {...props} icon="attachment" />}
                             />
                         }
@@ -38,7 +33,6 @@ const Screen = ({ navigation }) => {
                     />
                 </View>
             )}
-            <Button onPress={getData}>Get data</Button>
         </Provider>
     )
 }
