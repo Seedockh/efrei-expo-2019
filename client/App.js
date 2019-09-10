@@ -19,11 +19,11 @@ const App = () => {
 	})
 
 	const initialState = {
-		isLogged: false,	
-		firstName: "",
-		lastName: "",
-		city: "",
-		id: null,
+		isLogged: true,	
+		firstName: "Anonymous",
+		lastName: "User",
+		city: "Somewhere",
+		id: 1,
 		products: [
 			{
 				title: "Product n°1",
@@ -43,9 +43,10 @@ const App = () => {
 			}
 		],
 		productTitle: "",
-		productCategory: "",
-		productPrice: "",
-		productImage: ""
+		productCategory: null,
+		productPrice: "0",
+		productImage: "",
+		productId: null
 	};
 
 	const reducer = (state, action) => {

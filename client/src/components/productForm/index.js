@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextInput, Button } from 'react-native-paper';
 import { View, Picker, Image } from 'react-native';
 import { useStateValue } from '../../hooks/state';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import { useQuery } from '@apollo/react-hooks';
+import * as queries from '../../apollo/queries'
 
 const productForm = () => {
     const [{ productTitle, productCategory, productPrice, productImage }, dispatch] = useStateValue();
@@ -17,6 +19,8 @@ const productForm = () => {
         })
     }
     
+    const { data } = useQuery(queries.GET_CATEGORIES);
+
     getPermissionAsync = async () => {
         if (Constants.platform.ios) {
             const { CRStatus } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -62,16 +66,30 @@ const productForm = () => {
                 onChangeText={productTitle => setState("productTitle", productTitle)}
                 mode='outlined'
             />
-            <Picker
-                selectedValue={productCategory}
-                style={{height: 50, width: 'auto'}}
-                onValueChange={(itemValue, itemIndex) => setState("productCategory", productCategory)}>
-                <Picker.Item label="Home" value="home" />
-                <Picker.Item label="Electronic" value="elec" />
-                <Picker.Item label="Vehicle" value="vehicle" />
-                <Picker.Item label="Food" value="food" />
-                <Picker.Item label="Sport" value="sport" />
-            </Picker>
+            {
+                data != undefined && (
+                    <Picker
+                        selectedValue={productCategory}
+                        style={{height: 50, width: 'auto'}}
+                        onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
+                        {
+                            data.categories.map((item, index) => {
+                                return <Picker.Item key={index} label={item.name} value={item.id} />
+                            })
+                        }
+                    </Picker>
+                )
+            }
+            {
+                data == undefined && (
+                    <Picker
+                        selectedValue={productCategory}
+                        style={{height: 50, width: 'auto'}}
+                        onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
+                        <Picker.Item label="" value=""/>
+                    </Picker>
+                )
+            }
             <TextInput
                 label='Price'
                 value={productPrice}

@@ -21,3 +21,16 @@ export const EDIT_USER = gql`
         } 
     }
 `
+
+export const CREATE_POST = gql`
+    mutation createPost($data: EditPostInput!) {
+        createPost(data: $data) {
+            id
+            title
+            price
+            image
+            CategoryId
+            UserId
+        } 
+    }
+`
