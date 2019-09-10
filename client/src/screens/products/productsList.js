@@ -28,7 +28,7 @@ const Screen = ({ navigation }) => {
                                 </Card.Content>
                                 <Card.Cover source={{ uri: post.image}} />
                                 <Card.Actions>
-                                    <Button onPress={() => navigation.navigate('viewProduct')}>More...</Button>
+                                    <Button onPress={() => navigation.navigate('viewProduct', { productId: post.id })}>More...</Button>
                                 </Card.Actions>
                             </Card>
                         )
