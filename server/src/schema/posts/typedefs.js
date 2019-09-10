@@ -27,18 +27,18 @@ const typeDefs = /* GraphQL */ `
     image: String!
     CategoryId: ID!
     UserId: ID!
-    user: Users
-    category: Categories
+    user: postUser
+    category: postCategory
   }
 
-  type Users {
+  type postUser {
     id: ID!
     firstname: String!
     lastname: String!
     city: String!
   }
 
-  type Categories {
+  type postCategory {
     id: ID!
     name: String!
   }

@@ -1,12 +1,19 @@
 import Expo from 'expo-server-sdk';
 import Users from '../../data/models/users';
+import Posts from '../../data/models/posts'
+import Categories from '../../data/models/categories';
 
 let expo = new Expo();
 
 const resolvers = {
   Query: {
     users: (obj, args, ctx, info) => Users.findAll(),
-    user: (obj, args, ctx, info) => Users.findByPk(args.id),
+    user: async (obj, args, ctx, info) => {
+      const user = await Users.findByPk(args.id, {raw: true});
+      user.posts = await Posts.findAll({ where: {UserId: args.id}, raw: true });
+      user.posts.map( post => post.category = Categories.findByPk(post.CategoryId) )
+      return user;
+    },
   },
   Mutation: {
     createUser: async (obj, args, ctx, info) => {
