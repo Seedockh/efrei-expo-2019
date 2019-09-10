@@ -7,6 +7,7 @@ import productsList from '../../screens/products/productsList';
 import viewProduct from '../../screens/products/viewProduct';
 import createPost from '../../screens/products/createPost';
 import editPost from '../../screens/products/editPost';
+import Disconnected from '../../components/disconnected';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -23,6 +24,9 @@ const ProfileStack = createStackNavigator({
     },
     sellerProfile: {
         screen: sellerProfile
+    },
+    Disconnected: {
+        screen: Disconnected
     }
 }, {
     initialRouteName: 'viewProfile'
@@ -40,9 +44,12 @@ const ProductsStack = createStackNavigator({
     },
     editPost: {
         screen: editPost
+    },
+    Disconnected: {
+        screen: Disconnected
     }
 }, {
-    initialRouteName: 'productsList'
+    initialRouteName: 'productsList',
 });
 
 const TabNavigator = createBottomTabNavigator({

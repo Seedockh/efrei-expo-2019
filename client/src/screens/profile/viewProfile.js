@@ -2,6 +2,7 @@ import React from 'react';
 import { Provider, Text, Button } from 'react-native-paper';
 import { View } from 'react-native';
 import { useStateValue } from '../../hooks/state';
+import Disconnected from '../../components/disconnected';
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city }, dispatch] = useStateValue();
@@ -17,9 +18,7 @@ const Screen = ({ navigation }) => {
                 </View>
             )}
             {!isLogged && (
-                <View>
-                    <Button icon="edit" mode="contained" onPress={() => navigation.navigate('createProfile')}>Create a new profile</Button>
-                </View>
+                <Disconnected navigation={navigation}/>
             )}
         </Provider>
     )
