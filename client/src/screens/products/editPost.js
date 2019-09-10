@@ -15,28 +15,42 @@ const Screen = ({ navigation }) => {
 
     const post = navigation.getParam('post');
 
+    const setState = (state, value) => {
+        return dispatch({
+            type: 'setState',
+            state,
+            value
+        })
+    }
+
     const editProduct = async () => {
         await editPost({
 			variables: {
                 id: post.id,
 				data: {
-					title: productTitle || post.title,
-                    price: parseFloat(productPrice) || post.price,
-                    image: productImage || post.image,
-                    CategoryId: productCategory || post.category.id,
-                    UserId: post.user.id
+					title: productTitle,
+                    price: parseFloat(productPrice),
+                    image: productImage,
+                    CategoryId: productCategory,
+                    UserId: id
 				}
             },
             refetchQueries:[{
                 query: queries.GET_POSTS
             }]
         })
+        await setState("onEditProduct", false)
+        await setState("productTitle", "")
+        await setState("productCategory", 1)
+        await setState("productPrice", "1")
+        await setState("productImage", "")
+        await setState("productId", null)
         navigation.goBack();
     }
 
     return (
         <Provider>
-            <ProductForm/>
+            <ProductForm post={post}/>
             <Button icon="account-circle" mode="contained" onPress={editProduct}>Save</Button>   
         </Provider>
     )

@@ -31,6 +31,19 @@ const Screen = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const setState = (state, value) => {
+        return dispatch({
+            type: 'setState',
+            state,
+            value
+        })
+    }
+
+    const editPost = () => {
+        setState("onEditProduct", true)
+        navigation.navigate('editPost', { post: data.post})
+    }
+
     return (
         <Provider>
             {data != undefined && (
@@ -49,7 +62,7 @@ const Screen = ({ navigation }) => {
                     {data.post.user.id == id && (
                         <>
                             <Text>You own this product, you can edit or delete it if you sold it</Text>
-                            <Button icon="account-circle" mode="contained" onPress={() => navigation.navigate('editPost', { post: data.post})}>Edit</Button>
+                            <Button icon="account-circle" mode="contained" onPress={editPost}>Edit</Button>
                             <Button icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>   
                         </>
                     )}  
