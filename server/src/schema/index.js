@@ -1,9 +1,13 @@
 import { mergeSchemas } from 'graphql-tools'
-import userSchema from './users'
+import usersSchema from './users'
+import postsSchema from './posts'
+import categoriesSchema from './categories'
 
 const schema = mergeSchemas({
   schemas: [
-    userSchema,
+    usersSchema,
+    postsSchema,
+    categoriesSchema,
   ],
 })
 

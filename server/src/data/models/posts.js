@@ -14,7 +14,7 @@ export default class Posts extends Model {
       },
 
       image: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING,
       },
 
       createdAt: {
