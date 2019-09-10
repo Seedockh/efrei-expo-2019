@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider, Text, Button, List } from 'react-native-paper';
 import { View, FlatList } from 'react-native';
-import { useStateValue } from '../../hooks/state';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import * as queries from '../../apollo/queries';
 
 const Screen = ({ navigation }) => {
     const { data } = useQuery(queries.GET_USER, {
@@ -9,22 +10,27 @@ const Screen = ({ navigation }) => {
 			id: navigation.getParam('sellerId')
 		}
     });
+
+    alert(data)
     
+    const getData = () => {
+        alert(data)
+    }
+
     return (
         <Provider>
             {data != undefined && (
                 <View>
-                    <Text>Firstname: {firstName}</Text>
-                    <Text>Lastname: {lastName}</Text>
-                    <Text>Location: {city}</Text>
-                    <Text>Products:</Text>
-                    
+                    <Text>Firstname: {data.user.firstname}</Text>
+                    <Text>Lastname: {data.user.lastname}</Text>
+                    <Text>Location: {data.user.city}</Text>
+                    <Text>Products:</Text>                 
                     <FlatList
-                        data={products}
+                        data={data.user.posts}
                         renderItem={({item}) => 
                             <List.Item
                                 title={item.title}
-                                description={item.description}
+                                description={item.price}
                                 left={props => <List.Icon {...props} icon="attachment" />}
                             />
                         }
@@ -32,7 +38,7 @@ const Screen = ({ navigation }) => {
                     />
                 </View>
             )}
-            
+            <Button onPress={getData}>Get data</Button>
         </Provider>
     )
 }
