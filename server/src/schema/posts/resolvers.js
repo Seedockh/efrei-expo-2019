@@ -1,5 +1,6 @@
 import Expo from 'expo-server-sdk';
 import Posts from '../../data/models/posts';
+import Categories from '../../data/models/categories';
 
 let expo = new Expo();
 
@@ -14,6 +15,8 @@ const resolvers = {
         title: args.data.title,
         price: args.data.price,
         image: args.data.image,
+        CategoryId: args.data.CategoryId,
+        UserId: args.data.UserId,
       });
       await post.save();
       return post;
@@ -24,6 +27,7 @@ const resolvers = {
         title: args.data.title,
         price: args.data.price,
         image: args.data.image,
+        CategoryId: args.data.CategoryId,
       }, {
         where: { id: args.id },
       });

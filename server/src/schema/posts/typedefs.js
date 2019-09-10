@@ -24,6 +24,8 @@ const typeDefs = /* GraphQL */ `
     title: String!
     price: Float!
     image: String!
+    CategoryId: ID!
+    UserId: ID!
   }
 
   type ResultMessage {
@@ -34,6 +36,8 @@ const typeDefs = /* GraphQL */ `
     title: String
     price: Float
     image: String
+    CategoryId: ID
+    UserId: ID
   }
 `
 

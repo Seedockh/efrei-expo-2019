@@ -32,7 +32,5 @@ Users.init(db);
 Posts.init(db);
 Categories.init(db);
 
-Users.hasMany(Posts);
 Posts.belongsTo(Users);
-
-Posts.hasOne(Categories);
+Categories.hasOne(Posts);
