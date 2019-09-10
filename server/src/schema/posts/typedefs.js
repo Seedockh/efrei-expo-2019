@@ -27,6 +27,20 @@ const typeDefs = /* GraphQL */ `
     image: String!
     CategoryId: ID!
     UserId: ID!
+    user: Users
+    category: Categories
+  }
+
+  type Users {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    city: String!
+  }
+
+  type Categories {
+    id: ID!
+    name: String!
   }
 
   type ResultMessage {

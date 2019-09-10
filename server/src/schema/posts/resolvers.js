@@ -1,4 +1,5 @@
 import Expo from 'expo-server-sdk';
+import Users from '../../data/models/users';
 import Posts from '../../data/models/posts';
 import Categories from '../../data/models/categories';
 
@@ -7,7 +8,12 @@ let expo = new Expo();
 const resolvers = {
   Query: {
     posts: (obj, args, ctx, info) => Posts.findAll(),
-    post: (obj, args, ctx, info) => Posts.findByPk(args.id),
+    post: async (obj, args, ctx, info) => {
+      const post = await Posts.findByPk(args.id);
+      post.user = await Users.findByPk(post.UserId);
+      post.category = await Categories.findByPk(post.CategoryId)
+      return post;
+    },
     postsByCategory: (obj, args, ctx, info) => Posts.findAll({
       where: {
         CategoryId: args.CategoryId
