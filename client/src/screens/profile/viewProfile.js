@@ -24,8 +24,4 @@ const Screen = ({ navigation }) => {
     )
 }
 
-Screen.navigationOptions = {
-    title: 'Profile'
-}
-
 export default Screen;
