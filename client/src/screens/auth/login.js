@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Provider, TextInput, Text, Button, ProgressBar } from 'react-native-paper';
-import { useStateValue } from '../../../hooks/state';
+import { useStateValue } from '../../hooks/state';
 import { useLazyQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import Style from '../../../styles';
+import Style from '../../styles';
 
-const Login = ({ navigation }) => {
+const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city, id }, dispatch] = useStateValue();
     const [currentFirstName, setCurrentFirstName] = useState();
     const [currentLastName, setCurrentLastName] = useState();
-    const [result, setResult] = useState(null);
 
     const LOGIN = gql`
       query login($firstname: String!, $lastname: String!) {
@@ -27,7 +26,7 @@ const Login = ({ navigation }) => {
     `
     const [getLogin, { loading, data }] = useLazyQuery(LOGIN)
 
-    if (data && data.login) {
+    if (data && data.login && !isLogged) {
       dispatch({
           type: 'setState',
           state: 'id',
@@ -62,6 +61,11 @@ const Login = ({ navigation }) => {
           lastname: currentLastName
         }
       })
+      navigation.navigate('tabNavigator')
+    }
+
+    const register = () => {
+      navigation.navigate('register')
     }
 
     return (
@@ -90,7 +94,7 @@ const Login = ({ navigation }) => {
             </View>
             <View style={Style.main.section}>
               <Button style={Style.main.button} mode="contained" onPress={login}> Login </Button>
-              <Button style={Style.main.button} mode="contained" onPress={() => null}> Register </Button>
+              <Button style={Style.main.button} mode="contained" onPress={register}> Register </Button>
             </View>
             </>
           }
@@ -98,4 +102,4 @@ const Login = ({ navigation }) => {
     );
 }
 
-export default Login;
+export default Screen;

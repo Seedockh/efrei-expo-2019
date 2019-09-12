@@ -12,14 +12,20 @@ const navigation = {
     }
   },
   tabBar: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
-      style: {
-        backgroundColor: "#253140",
+      activeTintColor: '#b5423c',
+      inactiveTintColor: 'white',
+      labelStyle: {
+        fontWeight: 'bold',
+        fontSize: 12,
+        marginBottom: 15
       },
       tabStyle: {
+        padding: 0,
         backgroundColor: "#253140",
-      }
+      },
+      style: {
+        padding: 0,
+      },
   },
 }
 

@@ -10,7 +10,7 @@ const Screen = ({ navigation }) => {
     const [{ isLogged }, dispatch] = useStateValue();
 
     const { data } = useQuery(queries.GET_POSTS);
-    
+
     return (
         <Provider>
             {isLogged && (
@@ -41,10 +41,6 @@ const Screen = ({ navigation }) => {
             )}
         </Provider>
     )
-}
-
-Screen.navigationOptions = {
-    title: 'Products List'
 }
 
 export default Screen;

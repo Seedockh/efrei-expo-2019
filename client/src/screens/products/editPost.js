@@ -55,7 +55,6 @@ const Screen = ({ navigation }) => {
 }
 
 Screen.navigationOptions = {
-    title: 'Edit Post / Product',
     headerLeft: null
 }
 

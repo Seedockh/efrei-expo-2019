@@ -40,7 +40,6 @@ const Screen = ({ navigation }) => {
 }
 
 Screen.navigationOptions = {
-    title: 'Edit Profile',
     headerLeft: null
 }
 
