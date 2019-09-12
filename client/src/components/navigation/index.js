@@ -12,12 +12,19 @@ import Disconnected from '../../components/disconnected';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Style from '../../styles'
 
-const HomeStack = createStackNavigator({
+const HomeStack = createStackNavigator(
+  {
     viewHome: {
       screen: viewHome
-    }
-})
+    },
+  },
+  {
+    defaultNavigationOptions: Style.navigation.header,
+    tabBarOptions: Style.navigation.tabBar
+  }
+);
 
 const ProfileStack = createStackNavigator({
     viewProfile: {

@@ -1,5 +1,28 @@
 import { StyleSheet } from 'react-native'
 
+const navigation = {
+  header: {
+    headerStyle: {
+      backgroundColor: "#253140",
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+    }
+  },
+  tabBar: {
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+      style: {
+        backgroundColor: "#253140",
+      },
+      tabStyle: {
+        backgroundColor: "#253140",
+      }
+  },
+}
+
 const main = StyleSheet.create({
   container: {
     flex: 1,
@@ -37,4 +60,4 @@ const main = StyleSheet.create({
   },
 });
 
-export default { main }
+export default { main, navigation }
