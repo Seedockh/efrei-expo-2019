@@ -31,7 +31,8 @@ const App = () => {
 		productPrice: null,
 		productImage: "",
 		productId: null,
-		onEditProduct: false
+		onEditProduct: false,
+		filter: 999
 	};
 
 	const reducer = (state, action) => {
