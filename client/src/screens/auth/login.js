@@ -3,28 +3,14 @@ import { ScrollView, View } from 'react-native';
 import { Provider, TextInput, Text, Button, ProgressBar } from 'react-native-paper';
 import { useStateValue } from '../../hooks/state';
 import { useLazyQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import * as queries from '../../apollo/queries';
 import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city, id }, dispatch] = useStateValue();
     const [currentFirstName, setCurrentFirstName] = useState();
     const [currentLastName, setCurrentLastName] = useState();
-
-    const LOGIN = gql`
-      query login($firstname: String!, $lastname: String!) {
-        login(data: {
-          firstname: $firstname
-          lastname: $lastname
-        }) {
-          id
-          firstname
-          lastname
-          city
-        }
-      }
-    `
-    const [getLogin, { loading, data }] = useLazyQuery(LOGIN)
+    const [getLogin, { loading, data }] = useLazyQuery(queries.LOGIN)
 
     if (data && data.login && !isLogged) {
       dispatch({

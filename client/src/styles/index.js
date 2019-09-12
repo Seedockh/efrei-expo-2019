@@ -56,6 +56,18 @@ const main = StyleSheet.create({
     backgroundColor: '#b5423c',
     marginBottom: 10,
   },
+  roundButton: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 30,
+    backgroundColor: '#b5423c',
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+  },
   text: {
     color: 'white',
   },
@@ -63,6 +75,49 @@ const main = StyleSheet.create({
     width: '80%',
     marginBottom: 10,
     borderRadius: 3,
+  },
+  productsList: {
+    width: '90%',
+    marginVertical: 20,
+  },
+  card: {
+    backgroundColor: '#3b465c',
+    marginVertical: 15,
+    borderRadius: 7,
+    borderRightWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: '#5f7195',
+  },
+  cardTitle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontFamily: ''
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cardText: {
+    padding: 5,
+    marginTop: 3,
+    height: 30,
+    fontSize: 15,
+    borderRadius: 7,
+    color: 'white',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#b5423c',
+    fontWeight: 'bold',
+  },
+  cardCover: {
+    marginVertical: 10,
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderColor: '#253140',
+  },
+  cardButton: {
+    color: '#3b465c',
   },
 });
 
