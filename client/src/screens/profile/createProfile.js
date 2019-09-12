@@ -7,7 +7,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city, id }, dispatch] = useStateValue();
-    
+
     const [createUser, {
 		data: mutationData
     }] = useMutation(mutations.CREATE_USER);
@@ -19,13 +19,13 @@ const Screen = ({ navigation }) => {
             value: true
         })
         const result = await createUser({
-			variables: {
-				data: {
-					firstname: firstName,
-                    lastname: lastName,
-                    city
-				}
-            }
+    			variables: {
+    				data: {
+    					firstname: firstName,
+              lastname: lastName,
+              city
+    				}
+          }
         })
         await dispatch({
             type: 'setState',
@@ -34,7 +34,7 @@ const Screen = ({ navigation }) => {
         })
         navigation.goBack();
     }
-    
+
     return (
         <Provider>
             <ProfileForm/>

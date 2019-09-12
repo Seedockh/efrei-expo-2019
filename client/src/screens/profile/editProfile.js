@@ -23,8 +23,8 @@ const Screen = ({ navigation }) => {
                 id,
 				data: {
 					firstname: firstName,
-                    lastname: lastName,
-                    city
+          lastname: lastName,
+          city
 				}
 			},
 		});

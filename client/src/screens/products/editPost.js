@@ -9,9 +9,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 const Screen = ({ navigation }) => {
     const [{ productTitle, productCategory, productPrice, productImage, id }, dispatch] = useStateValue();
 
-    const [editPost, {
-		data: mutationData
-    }] = useMutation(mutations.EDIT_POST);
+    const [editPost, { data: mutationData }] = useMutation(mutations.EDIT_POST);
 
     const post = navigation.getParam('post');
 
@@ -51,7 +49,7 @@ const Screen = ({ navigation }) => {
     return (
         <Provider>
             <ProductForm post={post}/>
-            <Button icon="account-circle" mode="contained" onPress={editProduct}>Save</Button>   
+            <Button icon="account-circle" mode="contained" onPress={editProduct}>Save</Button>
         </Provider>
     )
 }

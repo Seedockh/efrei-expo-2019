@@ -1,4 +1,5 @@
 import React from 'react';
+import viewHome from '../../screens/home/viewHome';
 import viewProfile from '../../screens/profile/viewProfile';
 import editProfile from '../../screens/profile/editProfile';
 import createProfile from '../../screens/profile/createProfile';
@@ -11,6 +12,12 @@ import Disconnected from '../../components/disconnected';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+
+const HomeStack = createStackNavigator({
+    viewHome: {
+      screen: viewHome
+    }
+})
 
 const ProfileStack = createStackNavigator({
     viewProfile: {
@@ -53,6 +60,9 @@ const ProductsStack = createStackNavigator({
 });
 
 const TabNavigator = createBottomTabNavigator({
+    Home: {
+        screen: HomeStack
+    },
     Profile: {
         screen: ProfileStack
     },
@@ -60,7 +70,7 @@ const TabNavigator = createBottomTabNavigator({
         screen: ProductsStack
     }
 }, {
-    initialRouteName: 'Products',
+    initialRouteName: 'Home',
 });
 
 const AppContainer = createAppContainer(TabNavigator);
