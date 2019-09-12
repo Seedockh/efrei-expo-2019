@@ -116,9 +116,20 @@ const main = StyleSheet.create({
     borderBottomWidth: 5,
     borderColor: '#253140',
   },
-  cardButton: {
-    color: '#3b465c',
+  filterTitle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontFamily: ''
   },
+  picker: {
+    width: '100%',
+    backgroundColor: '#ffe07c',
+    opacity: 0.8,
+  },
+  pickerItem: {
+    //backgroundColor: '#ffe07c',
+    //color: '#5f7195',
+  }
 });
 
 export default { main, navigation }
