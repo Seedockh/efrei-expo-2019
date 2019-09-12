@@ -39,8 +39,4 @@ const Screen = ({ navigation }) => {
     )
 }
 
-Screen.navigationOptions = {
-    title: 'Create Post / Add Product'
-}
-
 export default Screen;

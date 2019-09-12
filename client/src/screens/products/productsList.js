@@ -5,10 +5,10 @@ import { useStateValue } from '../../hooks/state';
 import Disconnected from '../../components/disconnected';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from '../../apollo/queries';
+import Style from '../../styles'
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, productCategory, filter }, dispatch] = useStateValue();
-
     const { data } = useQuery(queries.GET_POSTS);
     const pickerData = useQuery(queries.GET_CATEGORIES, {fetchPolicy: "no-cache"}).data; 
 
@@ -22,35 +22,47 @@ const Screen = ({ navigation }) => {
 
     return (
         <Provider>
-            {isLogged && (
-                <Button icon="add" mode="contained" onPress={() => navigation.navigate('createPost')}>Add a new product</Button>
-            )}
+          <View style={Style.main.container}>
+             <Text>Filter:</Text>
+            {
+                pickerData != undefined && (
+                    <Picker
+                        selectedValue={filter}
+                        style={{height: 50, width: 'auto'}}
+                        onValueChange={(itemValue, itemIndex) => setState("filter", itemValue)}>
+                        <Picker.Item label={"Unset"} value={999} />
+                        {
+                            pickerData.categories.map((item, index) => {
+                                return <Picker.Item key={index} label={item.name} value={item.id} />
+                            })
+                        }
+                    </Picker>
+                )
+            }
+            {
+                pickerData == undefined && (
+                    <Picker
+                        selectedValue={productCategory}
+                        style={{height: 50, width: 'auto'}}
+                        onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
+                        <Picker.Item label="" value="" />
+                    </Picker>
+            }
             {isLogged && data != undefined && (
-                <>
-                    <Text>Filter:</Text>
-                    {
-                        pickerData != undefined && (
-                            <Picker
-                                selectedValue={filter}
-                                style={{height: 50, width: 'auto'}}
-                                onValueChange={(itemValue, itemIndex) => setState("filter", itemValue)}>
-                                <Picker.Item label={"Unset"} value={999} />
-                                {
-                                    pickerData.categories.map((item, index) => {
-                                        return <Picker.Item key={index} label={item.name} value={item.id} />
-                                    })
-                                }
-                            </Picker>
-                        )
-                    }
-                    {
-                        pickerData == undefined && (
-                            <Picker
-                                selectedValue={productCategory}
-                                style={{height: 50, width: 'auto'}}
-                                onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
-                                <Picker.Item label="" value="" />
-                            </Picker>
+                <ScrollView style={Style.main.productsList}>
+                {
+                    data.posts.map((post, index) => {
+                        return (
+                            <Card key={index} style={Style.main.card}>
+                                <Card.Content style={Style.main.cardHeader}>
+                                    <Title style={Style.main.cardTitle}>{post.title}</Title>
+                                    <Paragraph style={Style.main.cardText}>${post.price}</Paragraph>
+                                </Card.Content>
+                                <Card.Cover style={Style.main.cardCover} source={{ uri: post.image}} />
+                                <Card.Actions>
+                                    <Button style={Style.main.cardButton} onPress={() => navigation.navigate('viewProduct', { productId: post.id })}  dark={true}>See details</Button>
+                                </Card.Actions>
+                            </Card>
                         )
                     }
                     <ScrollView>
@@ -75,15 +87,15 @@ const Screen = ({ navigation }) => {
                     </ScrollView>
                 </>
             )}
+            {isLogged && (
+                <Button mode="contained" onPress={() => navigation.navigate('createPost')} style={Style.main.roundButton}>New</Button>
+            )}
             {!isLogged && (
                 <Disconnected navigation={navigation}/>
             )}
+          </View>
         </Provider>
     )
-}
-
-Screen.navigationOptions = {
-    title: 'Products List'
 }
 
 export default Screen;

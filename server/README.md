@@ -1,7 +1,3 @@
-# efrei-expo-2019
-## LeBonAngle - School React-Native project
-### `Pierre Hérissé - Antoine Nivoy`
-
 ## Server Side
 
 The server is host on **`Heroku`**, and the **GraphQL API interface** can be accessed at this URL :
@@ -70,6 +66,3 @@ mutation {
   }
 }
 ```
-
-
-## Client Side

@@ -58,22 +58,18 @@ const Screen = ({ navigation }) => {
                     <Text>Product ID: {data.post.id}</Text>
                     <Text>Sold by: {data.post.user.firstname} {data.post.user.lastname}</Text>
                     <Text>Location: {data.post.user.city}</Text>
-                    <Button icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>  
+                    <Button icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
                     {data.post.user.id == id && (
                         <>
                             <Text>You own this product, you can edit or delete it if you sold it</Text>
                             <Button icon="account-circle" mode="contained" onPress={editPost}>Edit</Button>
-                            <Button icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>   
+                            <Button icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>
                         </>
-                    )}  
+                    )}
                 </>
-            )}    
+            )}
         </Provider>
     )
-}
-
-Screen.navigationOptions = {
-    title: 'View Product'
 }
 
 export default Screen;

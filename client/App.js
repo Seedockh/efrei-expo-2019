@@ -4,6 +4,7 @@ import { StateProvider } from './src/hooks/state';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { BackHandler } from 'react-native'
+import Style from './src/styles'
 
 const client = new ApolloClient({
 	uri: 'https://lebonangle.herokuapp.com/',
@@ -13,38 +14,21 @@ const App = () => {
 	const handleBackButton = () => {
 		return true;
 	}
-	
+
 	useEffect(() => {
 		BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 	})
 
 	const initialState = {
-		isLogged: true,	
-		firstName: "Anonymous",
-		lastName: "User",
-		city: "Somewhere",
-		id: 1,
-		products: [
-			{
-				title: "Product n°1",
-				description: "Buy a nice forest in North America. This forest can't burn because it's wet",
-				category: "Forest",
-				price: "10.000",
-				photo: ["https://picsum.photos/700", "https://picsum.photos/701"],
-				ownerID: 1
-			},
-			{
-				title: "Product n°2",
-				description: "Buy something useless",
-				category: "Object",
-				price: "10",
-				photo: ["https://picsum.photos/700", "https://picsum.photos/701"],
-				ownerID: 8
-			}
-		],
+		isLogged: false,
+		firstName: "",
+		lastName: "",
+		city: "",
+		id: null,
+		products: [],
 		productTitle: "",
-		productCategory: 1,
-		productPrice: "1",
+		productCategory: null,
+		productPrice: null,
 		productImage: "",
 		productId: null,
 		onEditProduct: false,
@@ -63,10 +47,10 @@ const App = () => {
 		}
 	};
 
-	return (	
+	return (
 		<ApolloProvider client={client}>
 			<StateProvider initialState={initialState} reducer={reducer}>
-				<Navigation style={{fontFamily:'futur,OPTIMA'}}/>
+				<Navigation style={Style.main.navigation}/>
 			</StateProvider>
 		</ApolloProvider>
 	);

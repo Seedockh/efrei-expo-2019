@@ -23,8 +23,8 @@ const Screen = ({ navigation }) => {
                 id,
 				data: {
 					firstname: firstName,
-                    lastname: lastName,
-                    city
+          lastname: lastName,
+          city
 				}
 			},
 		});
@@ -33,14 +33,13 @@ const Screen = ({ navigation }) => {
 
     return (
         <Provider>
-            <ProfileForm/>
-            <Button icon="send" mode="contained" onPress={editProfile}>Save</Button>
+          <ProfileForm/>
+          <Button icon="send" mode="contained" onPress={editProfile}>Save</Button>
         </Provider>
     )
 }
 
 Screen.navigationOptions = {
-    title: 'Edit Profile',
     headerLeft: null
 }
 

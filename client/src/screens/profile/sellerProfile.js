@@ -19,10 +19,10 @@ const Screen = ({ navigation }) => {
                     <Text>Firstname: {data.user.firstname}</Text>
                     <Text>Lastname: {data.user.lastname}</Text>
                     <Text>Location: {data.user.city}</Text>
-                    <Text>Products:</Text>                 
+                    <Text>Products:</Text>
                     <FlatList
                         data={data.user.posts}
-                        renderItem={({item}) => 
+                        renderItem={({item}) =>
                             <List.Item
                                 title={item.title}
                                 description={`$ ${item.price.toString()}`}
@@ -35,10 +35,6 @@ const Screen = ({ navigation }) => {
             )}
         </Provider>
     )
-}
-
-Screen.navigationOptions = {
-    title: 'Seller Profile'
 }
 
 export default Screen;
