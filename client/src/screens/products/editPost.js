@@ -1,10 +1,12 @@
 import React from 'react';
+import { View } from 'react-native'
 import { Provider, Button } from 'react-native-paper';
 import ProductForm from '../../components/productForm';
 import * as queries from '../../apollo/queries';
 import { useStateValue } from '../../hooks/state';
 import * as mutations from '../../apollo/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
     const [{ productTitle, productCategory, productPrice, productImage, id }, dispatch] = useStateValue();
@@ -48,8 +50,10 @@ const Screen = ({ navigation }) => {
 
     return (
         <Provider>
+          <View style={Style.main.container}>
             <ProductForm post={post}/>
-            <Button icon="account-circle" mode="contained" onPress={editProduct}>Save</Button>
+            <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={editProduct}>Save</Button>
+          </View>  
         </Provider>
     )
 }

@@ -11,25 +11,19 @@ const Screen = ({ navigation }) => {
     const [{ id }, dispatch] = useStateValue();
 
     const { data } = useQuery(queries.GET_POST, {
-		variables: {
-			id: navigation.getParam('productId')
-		}
-	});
+  		variables: {
+  			id: navigation.getParam('productId')
+  		}
+	  });
 
-    const [deletePost, {
-		data: mutationData
-    }] = useMutation(mutations.DELETE_POST);
+    const [deletePost, {data: mutationData}] = useMutation(mutations.DELETE_POST);
 
     const deleteProduct = async () => {
-        await deletePost({
-			variables: {
-                id: data.post.id,
-			},
-            refetchQueries:[{
-                query: queries.GET_POSTS
-            }]
-		});
-        navigation.goBack();
+      await deletePost({
+  			variables: {id: data.post.id},
+        refetchQueries:[{query: queries.GET_POSTS}]
+		  });
+      navigation.goBack();
     }
 
     const setState = (state, value) => {
@@ -48,26 +42,30 @@ const Screen = ({ navigation }) => {
     return (
         <Provider>
             {data != undefined && (
-                <View style={Style.main.container}>
-                    <Text style={Style.main.bigTitle}>{data.post.title}</Text>
-                    <Text style={Style.main.cardText}>${data.post.price}</Text>
-                    <Text>{data.post.category.name}</Text>
-                    <Image
-                        style={{height: 200}}
-                        source={{ uri: data.post.image }}
-                    />
-                    <Text>Product ID: {data.post.id}</Text>
-                    <Text>Sold by: {data.post.user.firstname} {data.post.user.lastname}</Text>
-                    <Text>Location: {data.post.user.city}</Text>
-                    <Button icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
-                    {data.post.user.id == id && (
-                        <>
-                            <Text>You own this product, you can edit or delete it if you sold it</Text>
-                            <Button icon="account-circle" mode="contained" onPress={editPost}>Edit</Button>
-                            <Button icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>
-                        </>
-                    )}
-                </View>
+                <View style={Style.main.detailContainer}>
+                  <View style={Style.main.rowSection}>
+                    <Text style={Style.main.midTitle}>{data.post.title}</Text>
+                    <Text style={Style.main.textSkin}>{data.post.category.name}</Text>
+                    <Text style={Style.main.textRed}>${data.post.price}</Text>
+                  </View>
+                  <Image
+                      style={{height: 200}}
+                      source={{ uri: data.post.image }}
+                  />
+                  <View style={Style.main.rowSection}>
+                    <Text style={Style.main.textSkin}>{data.post.user.firstname} {data.post.user.lastname}</Text>
+                    <Text style={Style.main.textCandy}>{data.post.user.city}</Text>
+                  </View>
+                  <View style={Style.main.section}>
+                    <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
+                  </View>
+                  {data.post.user.id === id && (
+                    <View style={Style.main.section}>
+                      <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={editPost}>Edit</Button>
+                      <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>
+                    </View>
+                  )}
+              </View>
             )}
         </Provider>
     )

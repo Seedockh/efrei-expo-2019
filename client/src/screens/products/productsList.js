@@ -28,7 +28,7 @@ const Screen = ({ navigation }) => {
           }
           {!loading &&
           <>
-            <Text style={Style.main.filterTitle} >Filter:</Text>
+            <Text style={Style.main.filterTitle}>Filter:</Text>
             {pickerData != undefined &&
               <View style={Style.main.pickerWrapper}>
                 <Picker
@@ -59,7 +59,7 @@ const Screen = ({ navigation }) => {
                       <Card key={index} style={Style.main.card}>
                         <Card.Content style={Style.main.cardHeader}>
                           <Title style={Style.main.cardTitle}>{post.title}</Title>
-                          <Paragraph style={Style.main.cardText}>${post.price}</Paragraph>
+                          <Paragraph style={Style.main.textRed}>${post.price}</Paragraph>
                         </Card.Content>
                         <Card.Cover style={Style.main.cardCover} source={{ uri: post.image}} />
                         <Card.Actions>
