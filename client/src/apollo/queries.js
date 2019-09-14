@@ -87,3 +87,15 @@ export const GET_USER = gql`
         }
     }
 `
+
+export const GET_USER_POSTS = gql`
+    query userPosts($id: ID!){
+    	userPosts(id: $id) {
+        id
+        title
+        price
+        image
+        CategoryId
+      }
+    }
+`

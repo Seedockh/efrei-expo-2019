@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Provider, Text, Button, List, ProgressBar } from 'react-native-paper';
 import { View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import * as queries from '../../apollo/queries';
 import Style from '../../styles';
 
@@ -14,7 +14,6 @@ const Screen = ({ navigation }) => {
     });
 
     const Item = ({ id, title, price, image }) => {
-      console.log(image);
       return (
       <TouchableOpacity
         style={Style.main.card}
