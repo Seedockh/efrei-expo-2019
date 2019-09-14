@@ -2,6 +2,31 @@
 ## LeBonAngle - School React-Native project
 ### `Pierre Hérissé - Antoine Nivoy`
 
+## Requirements
+- [X] Use GraphQL API, Expo, React Navigation
+- [X] Users CRUD
+- [X] Posts CRUD
+- [X] Add Camera handling for Posts
+- [ ] Host images on a S3 bucket
+- [X] Display Posts list
+- [X] Filter Posts list
+- [X] Display Post details
+- [X] Display User details, with the list of his own Posts
+- [X] Only needs `npm install && expo start` to start
+- [ ] Publish project on Expo, using unique `expo.slug` identifier
+- [ ] Publish API on Now
+
+## Bonuses
+- [ ] Add profile picture for Users, visible on Posts and Profile
+- [ ] Send notification to Seller when an User is "interested"
+- [ ] Display notification list of Posts sold for Seller
+- [ ] Display "interested" Posts list for User
+- [ ] Auth by cellphone number, code sent by SMS
+- [ ] Add Geolocation of Seller in Posts
+- [ ] Display Posts on a map
+- [ ] Share Post to a contact via SMS
+- [ ] Payment for Seller, Buyer via Stripe
+
 ## Server Side
 
 The server is host on **`Heroku`**, and the **GraphQL API interface** can be accessed at this URL :
