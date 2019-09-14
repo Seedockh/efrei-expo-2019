@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from '../../apollo/queries';
+import Style from '../../styles';
 
 const productForm = (post) => {
     const [{ productTitle, productCategory, productPrice, productImage, onEditProduct }, dispatch] = useStateValue();
@@ -18,17 +19,17 @@ const productForm = (post) => {
             value
         })
     }
-    
+
     useEffect(() => {
-		if (post.post != undefined && productTitle == "" && productImage == "" && onEditProduct) {
+		    if (post.post != undefined && productTitle == "" && productImage == "" && onEditProduct) {
             setState("productTitle", post.post.title)
             setState("productCategory", post.post.category.id)
             setState("productPrice", post.post.price.toString())
             setState("productImage", post.post.image)
         }
     })
-    
-    const { data } = useQuery(queries.GET_CATEGORIES);    
+
+    const { data } = useQuery(queries.GET_CATEGORIES);
 
     getPermissionAsync = async () => {
         if (Constants.platform.ios) {
@@ -49,9 +50,9 @@ const productForm = (post) => {
             allowsEditing: true,
             aspect: [4, 3],
         });
-    
+
         console.log(result);
-    
+
         if (!result.cancelled) {
             setState("productImage", result.uri)
         }
@@ -68,18 +69,19 @@ const productForm = (post) => {
     }
 
     return (
-		<View>
+		<View style={Style.main.section}>
             <TextInput
                 label='Title'
                 value={productTitle}
                 onChangeText={productTitle => setState("productTitle", productTitle)}
-                mode='outlined'
+                style={Style.main.input}
             />
             {
                 data != undefined && (
+                  <View style={Style.main.postPickerWrapper}>
                     <Picker
                         selectedValue={productCategory}
-                        style={{height: 50, width: 'auto'}}
+                        style={Style.main.postPicker}
                         onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
                         {
                             data.categories.map((item, index) => {
@@ -87,26 +89,29 @@ const productForm = (post) => {
                             })
                         }
                     </Picker>
+                  </View>
                 )
             }
             {
                 data == undefined && (
+                  <View style={Style.main.postPickerWrapper}>
                     <Picker
                         selectedValue={productCategory}
-                        style={{height: 50, width: 'auto'}}
+                        style={Style.main.postPicker}
                         onValueChange={(itemValue, itemIndex) => setState("productCategory", itemValue)}>
                         <Picker.Item label="" value=""/>
                     </Picker>
+                  </View>
                 )
             }
             <TextInput
                 label='Price'
                 value={productPrice}
                 onChangeText={productPrice => setState("productPrice", productPrice)}
-                mode='outlined'
+                style={Style.main.input}
             />
-            <Button icon="send" mode="contained" onPress={pickImage}>Pick an image from camera roll</Button>
-            <Button icon="send" mode="contained" onPress={takePhoto}>Take a new photo</Button>
+            <Button icon="send" style={Style.main.button} mode="contained" onPress={pickImage}>Gallery</Button>
+            <Button icon="send" style={Style.main.button} mode="contained" onPress={takePhoto}>Take a new photo</Button>
             {productImage != "" && (
                 <Image source={{ uri: productImage }} style={{ width: 200, height: 200 }} />
             )}

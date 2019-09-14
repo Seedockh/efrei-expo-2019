@@ -1,10 +1,11 @@
 import React from 'react';
 import { Provider, Button } from 'react-native-paper';
-import { Text, Image } from 'react-native';
+import { Text, Image, View } from 'react-native';
 import * as queries from '../../apollo/queries';
 import { useStateValue } from '../../hooks/state';
 import * as mutations from '../../apollo/mutations';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
     const [{ id }, dispatch] = useStateValue();
@@ -47,10 +48,10 @@ const Screen = ({ navigation }) => {
     return (
         <Provider>
             {data != undefined && (
-                <>
-                    <Text>Title: {data.post.title}</Text>
-                    <Text>Price: ${data.post.price}</Text>
-                    <Text>Category: {data.post.category.name}</Text>
+                <View style={Style.main.container}>
+                    <Text style={Style.main.bigTitle}>{data.post.title}</Text>
+                    <Text style={Style.main.cardText}>${data.post.price}</Text>
+                    <Text>{data.post.category.name}</Text>
                     <Image
                         style={{height: 200}}
                         source={{ uri: data.post.image }}
@@ -66,7 +67,7 @@ const Screen = ({ navigation }) => {
                             <Button icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>
                         </>
                     )}
-                </>
+                </View>
             )}
         </Provider>
     )
