@@ -11,6 +11,7 @@ const typeDefs = `
     users: [Users!]!
     user(id: ID!): Users!
     login(data: LoginInput!): Users!
+    userPosts(id: ID!): [Posts!]
   }
 
   type Mutation {
