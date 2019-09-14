@@ -24,6 +24,7 @@ const resolvers = {
     login: (obj, args, ctx, info) => Users.findOne({
       where: { firstname: args.data.firstname, lastname: args.data.lastname }
     }),
+    userPosts: async (obj, args, ctx, info) => await Posts.findAll({ where: {UserId: args.id}, raw: true }),
   },
   Mutation: {
     createUser: async (obj, args, ctx, info) => {
