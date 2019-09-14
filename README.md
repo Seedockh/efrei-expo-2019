@@ -7,7 +7,6 @@
 - [X] Users CRUD
 - [X] Posts CRUD
 - [X] Add Camera handling for Posts
-- [ ] Host images on a S3 bucket
 - [X] Display Posts list
 - [X] Filter Posts list
 - [X] Display Post details
@@ -17,6 +16,7 @@
 - [ ] Publish API on Now
 
 ## Bonuses
+- [ ] Host images on a S3 bucket
 - [ ] Add profile picture for Users, visible on Posts and Profile
 - [ ] Send notification to Seller when an User is "interested"
 - [ ] Display notification list of Posts sold for Seller
