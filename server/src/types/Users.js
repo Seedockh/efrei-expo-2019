@@ -6,7 +6,7 @@ const Users = `
     firstname: String!
     lastname: String!
     city: String!
-    posts: [Posts]!
+    posts: [Posts!]
   }
 `
 
