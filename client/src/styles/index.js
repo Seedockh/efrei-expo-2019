@@ -121,15 +121,29 @@ const main = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: ''
   },
+  pickerWrapper: {
+    width: '90%',
+    borderWidth: 5,
+    borderColor: '#5f7195',
+    borderRadius: 7,
+  },
+  postPickerWrapper: {
+    width: '80%',
+    borderWidth: 5,
+    borderColor: '#5f7195',
+    borderRadius: 3,
+    marginBottom: 10
+  },
   picker: {
     width: '100%',
-    backgroundColor: '#ffe07c',
+    backgroundColor: '#5f7195',
     opacity: 0.8,
   },
-  pickerItem: {
-    //backgroundColor: '#ffe07c',
-    //color: '#5f7195',
-  }
+  postPicker: {
+    width: '100%',
+    backgroundColor: '#5f7195',
+    opacity: 0.8,
+  },
 });
 
 export default { main, navigation }
