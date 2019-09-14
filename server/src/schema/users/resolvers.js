@@ -7,11 +7,11 @@ let expo = new Expo();
 
 const resolvers = {
   Query: {
-    users: (obj, args, ctx, info) => {
+    users: async (obj, args, ctx, info) => {
       const users = await Users.findAll();
-      users.map( user => {
+      users.map( async (user) => {
         user.posts = await Posts.findAll({ where: {UserId: user.id}, raw: true });
-        user.posts.map( post => post.category = Categories.findByPk(post.CategoryId) )
+        user.posts.map( async (post) => post.category = await Categories.findByPk(post.CategoryId) )
         return user;
       });
       return users;
