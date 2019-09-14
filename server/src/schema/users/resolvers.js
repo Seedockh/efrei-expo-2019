@@ -9,12 +9,11 @@ const resolvers = {
   Query: {
     users: async (obj, args, ctx, info) => {
       const users = await Users.findAll();
-      users.map( async (user) => {
+      return await users.map( async user => {
         user.posts = await Posts.findAll({ where: {UserId: user.id}, raw: true });
-        user.posts.map( async (post) => post.category = await Categories.findByPk(post.CategoryId) )
+        user.posts.map( post => post.category = Categories.findByPk(post.CategoryId) )
         return user;
       });
-      return users;
     },
     user: async (obj, args, ctx, info) => {
       const user = await Users.findByPk(args.id, {raw: true});
