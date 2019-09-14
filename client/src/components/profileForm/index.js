@@ -16,24 +16,24 @@ const profileForm = () => {
     }
 
     return (
-  		<View style={Style.main.container}>
+  		<View style={Style.main.section}>
         <TextInput
             label='First Name'
+            style={Style.main.input}
             value={firstName}
             onChangeText={firstName => setState("firstName", firstName)}
-            mode='outlined'
         />
         <TextInput
             label='Last Name'
+            style={Style.main.input}
             value={lastName}
             onChangeText={value => setState("lastName", value)}
-            mode='outlined'
         />
         <TextInput
             label='City'
+            style={Style.main.input}
             value={city}
             onChangeText={value => setState("city", value)}
-            mode='outlined'
         />
       </View>
     );
