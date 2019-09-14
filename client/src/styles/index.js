@@ -58,6 +58,17 @@ const main = StyleSheet.create({
     width: '100%',
     marginVertical: 5,
   },
+  userSection: {
+    width: '80%',
+    backgroundColor: '#3b465c',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+    borderRadius: 7,
+    borderRightWidth: 2,
+    borderBottomWidth: 2,
+    borderColor: '#5f7195',
+  },
   bigTitle: {
     fontSize: 30,
     color: 'white',
@@ -197,6 +208,12 @@ const main = StyleSheet.create({
     backgroundColor: '#5f7195',
     opacity: 0.8,
   },
+  postItem: {
+    backgroundColor: 'green',
+  },
+  list: {
+    width: '90%',
+  }
 });
 
 export default { main, navigation }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider, Button } from 'react-native-paper';
-import { Text, Image, View } from 'react-native';
+import { Text, Image, View, ScrollView } from 'react-native';
 import * as queries from '../../apollo/queries';
 import { useStateValue } from '../../hooks/state';
 import * as mutations from '../../apollo/mutations';
@@ -42,7 +42,8 @@ const Screen = ({ navigation }) => {
     return (
         <Provider>
             {data != undefined && (
-                <View style={Style.main.detailContainer}>
+              <View style={Style.main.detailContainer}>
+                <ScrollView>
                   <View style={Style.main.rowSection}>
                     <Text style={Style.main.midTitle}>{data.post.title}</Text>
                     <Text style={Style.main.textSkin}>{data.post.category.name}</Text>
@@ -54,7 +55,7 @@ const Screen = ({ navigation }) => {
                   />
                   <View style={Style.main.rowSection}>
                     <Text style={Style.main.textSkin}>{data.post.user.firstname} {data.post.user.lastname}</Text>
-                    <Text style={Style.main.textCandy}>{data.post.user.city}</Text>
+                    <Text style={Style.main.textRed}>{data.post.user.city}</Text>
                   </View>
                   <View style={Style.main.section}>
                     <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
@@ -65,7 +66,8 @@ const Screen = ({ navigation }) => {
                       <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={deleteProduct}>Delete</Button>
                     </View>
                   )}
-              </View>
+              </ScrollView>
+            </View>
             )}
         </Provider>
     )
