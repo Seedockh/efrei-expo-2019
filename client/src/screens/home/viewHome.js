@@ -7,31 +7,31 @@ import Style from '../../styles';
 const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city }, dispatch] = useStateValue();
 
-    const logout = () => {
-      dispatch({
+    const logout = async () => {
+      await dispatch({
+          type: 'setState',
+          state: 'isLogged',
+          value: false
+      });
+      await dispatch({
           type: 'setState',
           state: 'id',
           value: null
       });
-      dispatch({
+      await dispatch({
           type: 'setState',
           state: 'firstName',
           value: ''
       });
-      dispatch({
+      await dispatch({
           type: 'setState',
           state: 'lastName',
           value: ''
       });
-      dispatch({
+      await dispatch({
           type: 'setState',
           state: 'city',
           value: ''
-      });
-      dispatch({
-          type: 'setState',
-          state: 'isLogged',
-          value: false
       });
       navigation.navigate('login');
     }

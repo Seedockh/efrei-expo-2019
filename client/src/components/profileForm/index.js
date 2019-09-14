@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextInput } from 'react-native-paper';
-import { View } from 'react-native';
+import { AppState, View } from 'react-native';
 import { useStateValue } from '../../hooks/state';
 import Style from '../../styles'
 
 const profileForm = () => {
     const [{ firstName, lastName, city }, dispatch] = useStateValue();
+    let tempData = { tempFirstName: firstName, tempLastName: lastName, tempCity: city };
 
     const setState = (state, value) => {
-        return dispatch({
-            type: 'setState',
-            state,
-            value
-        })
+      return dispatch({
+          type: 'setState',
+          state,
+          value
+      })
     }
 
     return (

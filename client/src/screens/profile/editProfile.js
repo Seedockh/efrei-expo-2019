@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider, Button } from 'react-native-paper';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import ProfileForm from '../../components/profileForm';
 import { useStateValue } from '../../hooks/state';
 import * as mutations from '../../apollo/mutations';
@@ -9,15 +9,20 @@ import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, firstName, lastName, city, id }, dispatch] = useStateValue();
-
     const [editUser, { data: mutationData }] = useMutation(mutations.EDIT_USER);
 
     const editProfile = async () => {
-      await dispatch({
-          type: 'setState',
-          state: 'isLogged',
-          value: true
-      })
+      if (!firstName || !lastName || !city || firstName.length<3 || lastName.length<3 || city.length<3 ) {
+        return Alert.alert(
+          'Whoops !',
+          'All fields are required and must be at least 3 characters long !',
+          [
+            { text: 'Try again' }
+          ],
+          { cancelable: false },
+        );
+      }
+
       await editUser({
   			variables: {
           id,

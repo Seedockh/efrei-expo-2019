@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { Provider, Button, TextInput, Text, ProgressBar } from 'react-native-paper';
 import { useStateValue } from '../../hooks/state';
 import * as mutations from '../../apollo/mutations';
@@ -42,6 +42,17 @@ const Screen = ({ navigation }) => {
     }
 
     const register = () => {
+      if (!currentFirstName || !currentLastName || !currentCity || currentFirstName.length<3 || currentLastName.length<3 || currentCity.length<3 ) {
+        return Alert.alert(
+          'Whoops !',
+          'All fields are required and must be at least 3 characters long !',
+          [
+            { text: 'Try again' }
+          ],
+          { cancelable: false },
+        );
+      }
+
       getRegister({
         variables: {
           data: {

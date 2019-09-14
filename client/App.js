@@ -21,6 +21,7 @@ const App = () => {
 
 	const initialState = {
 		isLogged: false,
+		isLoading: false,
 		firstName: "",
 		lastName: "",
 		city: "",
@@ -32,7 +33,7 @@ const App = () => {
 		productImage: "",
 		productId: null,
 		onEditProduct: false,
-		filter: 999
+		filter: 999,
 	};
 
 	const reducer = (state, action) => {

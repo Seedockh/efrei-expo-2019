@@ -9,7 +9,6 @@ import Style from '../../styles'
 
 const Screen = ({ navigation }) => {
     const [{ isLogged, id, firstName, lastName, city }, dispatch] = useStateValue();
-
     const { loading, data } = useQuery(queries.GET_USER_POSTS, {
   		variables: {
   			id: id
