@@ -3,10 +3,12 @@ import { TextInput, Button } from 'react-native-paper';
 import { View, Picker, Image } from 'react-native';
 import { useStateValue } from '../../hooks/state';
 import * as ImagePicker from 'expo-image-picker';
+import { RNS3 } from 'react-native-aws3';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from '../../apollo/queries';
+import { env } from '../../../env.js';
 import Style from '../../styles';
 
 const productForm = (post) => {
@@ -51,10 +53,41 @@ const productForm = (post) => {
             aspect: [4, 3],
         });
 
-        console.log(result);
-
         if (!result.cancelled) {
-            setState("productImage", result.uri)
+            setState("productImage", result.uri);
+
+            const file = {
+              // `uri` can also be a file system path (i.e. file://)
+              uri: result.uri,
+              name: Math.round(Math.random() * 1000) + '.png',
+              type: "image/png"
+            }
+
+            const options = {
+              keyPrefix: "images/",
+              bucket: "lebonangle-bucket",
+              region: "us-west-2",
+              accessKey: env.S3_ACCESS_KEY,
+              secretKey: env.S3_SECRET_ACCESS_KEY,
+              successActionStatus: 201
+            }
+
+            RNS3.put(file, options).then(response => {
+              console.log(response);
+              if (response.status !== 201)
+                throw new Error("Failed to upload image to S3");
+              console.log(response.body);
+              /**
+               * {
+               *   postResponse: {
+               *     bucket: "your-bucket",
+               *     etag : "9f620878e06d28774406017480a59fd4",
+               *     key: "uploads/image.png",
+               *     location: "https://your-bucket.s3.amazonaws.com/uploads%2Fimage.png"
+               *   }
+               * }
+               */
+            });
         }
     };
 
