@@ -13,12 +13,12 @@ const AWS = require('aws-sdk');
 const port = process.env.PORT || 8080;
 
 const s3 = new AWS.S3({
-  accessKeyId:'AKIA2R3F245T2JFKKNB4',
-  secretAccessKey:'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',
-  region:'eu-west-3'
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey:process.env.S3_SECRET_ACCESS_KEY,
+  region:'us-west-2'
 });
 
-const params = {Bucket: 'test-bucket-tutorial', Key: 'images/myimage.jpg', ContentType: 'image/jpeg'};
+const params = {Bucket: 'lebonangle-bucket', Key: 'images/first.png', ContentType: 'image/png'};
 
 s3.getSignedUrl('putObject', params, function (err, url) {
     console.log('Your generated pre-signed URL is', url);
