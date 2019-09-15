@@ -12,12 +12,12 @@
 - [X] Display Post details
 - [X] Display User details, with the list of his own Posts
 - [X] Only needs `npm install && expo start` to start
-- [ ] Publish project on Expo, using unique `expo.slug` identifier
-- [ ] Publish API on Now
+- [X] Publish project on Expo, using unique `expo.slug` identifier
+- [X] Publish API on Heroku
 
 ## Bonuses
-- [ ] Host images on a S3 bucket
-- [ ] Add profile picture for Users, visible on Posts and Profile
+- [X] Host images on a S3 bucket
+- [X] Add profile picture for Users, visible on Posts and Profile
 - [ ] Send notification to Seller when an User is "interested"
 - [ ] Display notification list of Posts sold for Seller
 - [ ] Display "interested" Posts list for User
