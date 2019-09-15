@@ -52,54 +52,48 @@ const productForm = (post) => {
             allowsEditing: true,
             aspect: [4, 3],
         });
-
         if (!result.cancelled) {
-            setState("productImage", result.uri);
-
-            const file = {
-              // `uri` can also be a file system path (i.e. file://)
-              uri: result.uri,
-              name: Math.round(Math.random() * 1000) + '.png',
-              type: "image/png"
-            }
-
-            const options = {
-              keyPrefix: "images/",
-              bucket: "lebonangle-bucket",
-              region: "eu-west-3",
-              accessKey: env.S3_ACCESS_KEY,
-              secretKey: env.S3_SECRET_ACCESS_KEY,
-              successActionStatus: 201
-            }
-
-            RNS3.put(file, options).then(response => {
-              const json = xmlToJson(response);
-              console.log(response);
-              if (response.status !== 201)
-                throw new Error("Failed to upload image to S3");
-              console.log(response.body);
-              /**
-               * {
-               *   postResponse: {
-               *     bucket: "your-bucket",
-               *     etag : "9f620878e06d28774406017480a59fd4",
-               *     key: "uploads/image.png",
-               *     location: "https://your-bucket.s3.amazonaws.com/uploads%2Fimage.png"
-               *   }
-               * }
-               */
-            });
+          uploadPictureToS3(result.uri);
         }
     };
 
     takePhoto = async () => {
         let result = await ImagePicker.launchCameraAsync()
-
-        console.log(result)
-
         if (!result.cancelled) {
-            setState("productImage", result.uri)
+          uploadPictureToS3(result.uri);
         }
+    }
+
+    uploadPictureToS3 = async (uri) => {
+      const randName = Math.round(Math.random() * 1000) + '.png';
+      const file = {
+        uri: uri,
+        name: randName,
+        type: "image/png"
+      }
+
+      const options = {
+        keyPrefix: "images/",
+        bucket: "lebonangle-bucket",
+        region: "eu-west-3",
+        accessKey: env.S3_ACCESS_KEY,
+        secretKey: env.S3_SECRET_ACCESS_KEY,
+        successActionStatus: 201
+      }
+
+      RNS3.put(file, options).then(response => {
+        if (response.status !== 201) {
+          if (response.status === 307) { // If status code is a redirection status
+            return console.log(`>>> Error : Bucket is not ready yet.
+    Try to redirect upload request to "${response.headers.Location}" endpoint.`);
+          }
+          throw new Error("Failed to upload image to S3");
+        }
+
+        console.log('Image uploaded successfully !');
+        console.log(response.body);
+        setState("productImage", response.body.postResponse.location);
+      });
     }
 
     return (
