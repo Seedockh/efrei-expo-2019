@@ -8,14 +8,14 @@ import Disconnected from '../../components/disconnected';
 import Style from '../../styles'
 
 const Screen = ({ navigation }) => {
-    const [{ isLogged, id, firstName, lastName, city }, dispatch] = useStateValue();
+    const [{ isLogged, id, firstName, lastName, city, image }, dispatch] = useStateValue();
     const { loading, data } = useQuery(queries.GET_USER_POSTS, {
   		variables: {
   			id: id
   		}
 	  });
 
-    const Item = ({ id, title, price, image }) => {
+    const Item = ({ id, title, price, productImage }) => {
       return (
       <TouchableOpacity
         style={Style.main.card}
@@ -27,7 +27,7 @@ const Screen = ({ navigation }) => {
         </View>
         <Image
             style={{height: 200}}
-            source={{ uri: image }}
+            source={{ uri: productImage }}
         />
       </TouchableOpacity>
     )};
@@ -42,6 +42,9 @@ const Screen = ({ navigation }) => {
                   <ScrollView>
                     <View style={Style.main.section}>
                       <View style={Style.main.userSection}>
+                      {image &&
+                        <Image source={{ uri: "'"+image+"'" }} style={Style.main.profilePic}/>
+                      }
                         <Text style={Style.main.smallTitle}>{firstName}</Text>
                         <Text style={Style.main.smallTitle}>{lastName}</Text>
                         <Text style={Style.main.smallTitle}>{city}</Text>
@@ -59,7 +62,7 @@ const Screen = ({ navigation }) => {
                                 id={item.id}
                                 title={item.title}
                                 price={`$ ${item.price.toString()}`}
-                                image={item.image}
+                                productImage={item.image}
                                 left={props => <List.Icon {...props} icon="attachment" />}
                               />
                             )

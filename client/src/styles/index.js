@@ -69,6 +69,9 @@ const main = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: '#5f7195',
   },
+  profilePic: {
+    height: 200,
+  },
   bigTitle: {
     fontSize: 30,
     color: 'white',

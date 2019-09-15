@@ -25,6 +25,7 @@ const App = () => {
 		firstName: "",
 		lastName: "",
 		city: "",
+		image: "",
 		id: null,
 		products: [],
 		productTitle: "",

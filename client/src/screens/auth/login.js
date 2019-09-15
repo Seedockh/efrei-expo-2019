@@ -9,7 +9,7 @@ import Style from '../../styles';
 console.disableYellowBox = true;
 
 const Screen = ({ navigation }) => {
-    const [{ isLogged, isLoading, firstName, lastName, city, id }, dispatch] = useStateValue();
+    const [{ isLogged, isLoading, firstName, lastName, city, image, id }, dispatch] = useStateValue();
     const [currentFirstName, setCurrentFirstName] = useState("");
     const [currentLastName, setCurrentLastName] = useState("");
     const [getLogin, { loading, error, data }] = useLazyQuery(queries.LOGIN)
@@ -41,6 +41,11 @@ const Screen = ({ navigation }) => {
             type: 'setState',
             state: 'city',
             value: data.login.city
+        });
+        dispatch({
+            type: 'setState',
+            state: 'image',
+            value: data.login.image
         });
         dispatch({
             type: 'setState',
@@ -110,6 +115,11 @@ const Screen = ({ navigation }) => {
       dispatch({
           type: 'setState',
           state: 'city',
+          value: ""
+      });
+      dispatch({
+          type: 'setState',
+          state: 'image',
           value: ""
       });
       dispatch({

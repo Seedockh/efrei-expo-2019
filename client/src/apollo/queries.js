@@ -10,6 +10,7 @@ export const LOGIN = gql`
       firstname
       lastname
       city
+      image
     }
   }
 `
@@ -20,6 +21,7 @@ export const GET_USERS = gql`
             firstname
             lastname
             city
+            image
         }
     }
 `
@@ -74,6 +76,7 @@ export const GET_USER = gql`
             firstname
             lastname
             city
+            image
             posts {
                 id
                 title
