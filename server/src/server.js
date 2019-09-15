@@ -15,7 +15,7 @@ const port = process.env.PORT || 8080;
 const s3 = new AWS.S3({
   accessKeyId: process.env.S3_ACCESS_KEY,
   secretAccessKey:process.env.S3_SECRET_ACCESS_KEY,
-  region:'eu-west-3'
+  region:'us-west-2'
 });
 
 const params = {Bucket: 'lebonangle-bucket', Key: 'images/first.png', ContentType: 'image/png'};
