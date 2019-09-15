@@ -85,7 +85,10 @@ const productForm = (post) => {
         if (response.status !== 201) {
           if (response.status === 307) { // If status code is a redirection status
             return console.log(`>>> Error : Bucket is not ready yet.
-    Try to redirect upload request to "${response.headers.Location}" endpoint.`);
+    Try to redirect upload request to :
+        "${response.headers.Location}" endpoint.
+    Current endpoint :
+        "https://lebonangle-bucket.s3.amazonaws.com/"`);
           }
           throw new Error("Failed to upload image to S3");
         }
