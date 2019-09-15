@@ -2,6 +2,7 @@
   "expo": {
     "name": "lebonangle",
     "slug": "client-lba-hpna",
+    "description": "Efrei project by Pierre Hérissé & Antoine Nivoy",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
