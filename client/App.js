@@ -35,6 +35,7 @@ const App = () => {
 		productId: null,
 		onEditProduct: false,
 		filter: 999,
+		interests: []
 	};
 
 	const reducer = (state, action) => {

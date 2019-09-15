@@ -103,3 +103,13 @@ export const GET_USER_POSTS = gql`
       }
     }
 `
+
+export const GET_USER_INTERESTS = gql`
+    query interestsByUser($UserId: ID!){
+    	interestsByUser(UserId: $UserId) {
+        id
+        notificationSent
+        PostId
+      }
+    }
+`

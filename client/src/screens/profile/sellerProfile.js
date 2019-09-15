@@ -42,6 +42,7 @@ const Screen = ({ navigation }) => {
                     <Text style={Style.main.midTitle}>{data.user.firstname} {data.user.lastname}</Text>
                   </View>
                   <View style={Style.main.section}>
+                    <Image source={{ uri: data.user.image }} style={[Style.main.profilePic, { marginBottom: 20}]}/>
                     <Text style={Style.main.textRed}>{data.user.city}</Text>
                   </View>
                   <View style={Style.main.section}>

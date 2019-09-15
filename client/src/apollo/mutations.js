@@ -7,7 +7,7 @@ export const CREATE_USER = gql`
             firstname
             lastname
             city
-        } 
+        }
     }
 `
 
@@ -18,7 +18,7 @@ export const EDIT_USER = gql`
             firstname
             lastname
             city
-        } 
+        }
     }
 `
 
@@ -31,7 +31,7 @@ export const CREATE_POST = gql`
             image
             CategoryId
             UserId
-        } 
+        }
     }
 `
 
@@ -39,7 +39,7 @@ export const DELETE_POST = gql`
     mutation deletePost($id: ID!) {
         deletePost(id: $id) {
             success
-        } 
+        }
     }
 `
 
@@ -52,6 +52,16 @@ export const EDIT_POST = gql`
             image
             CategoryId
             UserId
-        } 
+        }
+    }
+`
+
+export const CREATE_INTEREST = gql`
+    mutation createInterest($data: EditInterest!) {
+        createInterest(data: $data) {
+            notificationSent
+            UserId
+            PostId
+        }
     }
 `

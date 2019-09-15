@@ -111,6 +111,13 @@ const main = StyleSheet.create({
     backgroundColor: '#b5423c',
     marginBottom: 10,
   },
+  interestButton: {
+    width: '80%',
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: '#1e834b',
+    marginBottom: 10,
+  },
   roundButton: {
     width: 80,
     height: 80,

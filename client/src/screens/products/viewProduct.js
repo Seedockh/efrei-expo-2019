@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider, Button } from 'react-native-paper';
 import { Text, Image, View, ScrollView } from 'react-native';
 import * as queries from '../../apollo/queries';
@@ -8,7 +8,19 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
-    const [{ id }, dispatch] = useStateValue();
+    const [{ id, interests }, dispatch] = useStateValue();
+    const [alreadyInterested, setAlreadyInterested] = useState(false);
+    const [createInterest, {data: interestData}] = useMutation(mutations.CREATE_INTEREST);
+
+    useEffect( () => {
+      if (data) {
+        interests.map( interest => {
+          if (interest.PostId === data.post.id) {
+            setAlreadyInterested(true)
+          }
+        })
+      }
+    })
 
     const { data } = useQuery(queries.GET_POST, {
   		variables: {
@@ -39,6 +51,19 @@ const Screen = ({ navigation }) => {
         navigation.navigate('editPost', { post: data.post})
     }
 
+    const addInterest = async () => {
+        await createInterest({
+    			variables: {
+            data: {
+              notificationSent: false,    // For now, notifications are not implemented
+              UserId: id,
+              PostId: data.post.id
+            }
+          },
+  		  });
+        alert('A notification has been sent to the seller of this product.');
+    }
+
     return (
         <Provider>
             {data != undefined && (
@@ -59,7 +84,8 @@ const Screen = ({ navigation }) => {
                     <Text style={Style.main.textRed}>{data.post.user.city}</Text>
                   </View>
                   <View style={Style.main.section}>
-                    <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('view', { sellerId: data.post.user.id })}>Seller Profile</Button>
+                    <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
+                    <Button style={Style.main.interestButton} icon="send" mode="contained" onPress={addInterest} disabled={alreadyInterested}>I'm interested</Button>
                   </View>
                   {data.post.user.id === id && (
                     <View style={Style.main.section}>

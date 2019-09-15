@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider, Button, Card, Title, Paragraph, ProgressBar  } from 'react-native-paper';
+import { Provider, Button, Card, Title, Paragraph, ProgressBar, IconButton  } from 'react-native-paper';
 import { ScrollView, Text, Picker, View } from 'react-native';
 import { useStateValue } from '../../hooks/state';
 import Disconnected from '../../components/disconnected';
@@ -69,7 +69,12 @@ const Screen = ({ navigation }) => {
                     }
                 })}
               </ScrollView>
-              <Button mode="contained" onPress={() => navigation.navigate('createPost')} style={Style.main.roundButton}>New</Button>
+                <IconButton
+                  icon="add"
+                  color="white"
+                  style={Style.main.roundButton}
+                  onPress={() => navigation.navigate('createPost')}
+                />
             </>
           }
         </View>
