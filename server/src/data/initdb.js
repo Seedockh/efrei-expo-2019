@@ -3,6 +3,7 @@ import fs from 'fs';
 import Users from './models/users';
 import Posts from './models/posts';
 import Categories from './models/categories';
+import UserInterestedInPost from './models/userInterestedInPost';
 
 const config = fs.existsSync(__dirname + '/config.json') ? require('./config.json').dev : console.log('data/config.json not found !');
 
@@ -31,6 +32,9 @@ db.authenticate()
 Users.init(db);
 Posts.init(db);
 Categories.init(db);
+UserInterestedInPost.init(db);
 
 Posts.belongsTo(Users);
 Categories.hasOne(Posts);
+UserInterestedInPost.belongsTo(Users);
+UserInterestedInPost.belongsTo(Posts);
