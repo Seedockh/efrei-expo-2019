@@ -11,25 +11,22 @@ import Style from '../../styles'
 const Screen = ({ navigation }) => {
     const [{ productTitle, productCategory, productPrice, productImage, id }, dispatch] = useStateValue();
 
-    const [createPost, {
-		data: mutationData
-    }] = useMutation(mutations.CREATE_POST);
+    const [createPost, {data: mutationData}] = useMutation(mutations.CREATE_POST);
 
     const createProduct = async () => {
         const result = await createPost({
-			variables: {
-				data: {
-					title: productTitle,
-                    price: parseFloat(productPrice),
-                    image: productImage,
-                    CategoryId: productCategory,
-                    UserId: id
-				}
-            },
-            refetchQueries:[{
-                query: queries.GET_POSTS
-            }]
-        })
+          variables: {
+            data: {
+              title: productTitle,
+              price: parseFloat(productPrice),
+              image: productImage,
+              CategoryId: productCategory,
+              UserId: id
+            }
+          },
+          refetchQueries:[{ query: queries.GET_POSTS }]
+        });
+
         dispatch({
             type: 'setState',
             state: 'productTitle',

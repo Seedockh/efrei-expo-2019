@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const LOGIN = gql`
-  query login($firstname: String!, $lastname: String!) {
+  query login($firstname: String, $lastname: String) {
     login(data: {
       firstname: $firstname
       lastname: $lastname

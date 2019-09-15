@@ -53,7 +53,7 @@ const Screen = ({ navigation }) => {
             }
 
               <ScrollView style={Style.main.productsList}>
-                {data.posts.map((post, index) => {
+                {data && data.posts.map((post, index) => {
                   if (post.CategoryId == filter.toString() || filter == "999") {
                     return (
                       <Card key={index} style={Style.main.card}>

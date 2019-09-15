@@ -2,6 +2,7 @@ import Expo from 'expo-server-sdk';
 import Users from '../../data/models/users';
 import Posts from '../../data/models/posts'
 import Categories from '../../data/models/categories';
+import { AuthenticationError } from 'apollo-server';
 
 let expo = new Expo();
 
@@ -21,9 +22,11 @@ const resolvers = {
       user.posts.map( post => post.category = Categories.findByPk(post.CategoryId) )
       return user;
     },
-    login: (obj, args, ctx, info) => Users.findOne({
-      where: { firstname: args.data.firstname, lastname: args.data.lastname }
-    }),
+    login: async (obj, args, ctx, info) => {
+      const auth = await Users.findOne({ where: { firstname: args.data.firstname, lastname: args.data.lastname } });
+      if (!auth) throw new AuthenticationError('Wrong credentials, please try again !');
+      return auth;
+    },
     userPosts: async (obj, args, ctx, info) => await Posts.findAll({ where: {UserId: args.id}, raw: true }),
   },
   Mutation: {
