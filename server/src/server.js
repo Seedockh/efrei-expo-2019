@@ -21,7 +21,9 @@ const s3 = new AWS.S3({
 const params = {Bucket: 'lebonangle-bucket', Key: 'images/first.png', ContentType: 'image/png'};
 
 s3.getSignedUrl('putObject', params, function (err, url) {
-    console.log('Your generated pre-signed URL is', url);
+    if (err) {
+      console.log('There was an error with S3 bucket :', err);
+    }
 });
 
 iconv.encodings = encodings;

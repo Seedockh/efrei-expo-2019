@@ -35,6 +35,7 @@ const resolvers = {
         firstname: args.data.firstname,
         lastname: args.data.lastname,
         city: args.data.city,
+        image: args.data.image
       });
       await user.save();
       return user;
@@ -45,6 +46,7 @@ const resolvers = {
         firstname: args.data.firstname,
         lastname: args.data.lastname,
         city: args.data.city,
+        image: args.data.image
       }, {
         where: { id: args.id },
       });

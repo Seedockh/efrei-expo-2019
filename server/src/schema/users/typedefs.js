@@ -31,6 +31,7 @@ const typeDefs = `
     firstname: String
     lastname: String
     city: String
+    image: String
   }
 `
 

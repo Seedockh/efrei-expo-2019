@@ -6,6 +6,7 @@ const Users = `
     firstname: String!
     lastname: String!
     city: String!
+    image: String!
     posts: [Posts!]
   }
 `

@@ -17,6 +17,10 @@ export default class Users extends Model {
         type: Sequelize.STRING,
       },
 
+      image: {
+        type: Sequelize.STRING,
+      },
+
       createdAt: {
         type: Sequelize.DATE(3),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
