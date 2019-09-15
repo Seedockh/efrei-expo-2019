@@ -66,13 +66,14 @@ const productForm = (post) => {
             const options = {
               keyPrefix: "images/",
               bucket: "lebonangle-bucket",
-              region: "us-west-2",
+              region: "eu-west-3",
               accessKey: env.S3_ACCESS_KEY,
               secretKey: env.S3_SECRET_ACCESS_KEY,
               successActionStatus: 201
             }
 
             RNS3.put(file, options).then(response => {
+              const json = xmlToJson(response);
               console.log(response);
               if (response.status !== 201)
                 throw new Error("Failed to upload image to S3");
