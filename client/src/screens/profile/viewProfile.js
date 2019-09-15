@@ -42,12 +42,16 @@ const Screen = ({ navigation }) => {
                   <ScrollView>
                     <View style={Style.main.section}>
                       <View style={Style.main.userSection}>
-                      {image &&
-                        <Image source={{ uri: "'"+image+"'" }} style={Style.main.profilePic}/>
-                      }
-                        <Text style={Style.main.smallTitle}>{firstName}</Text>
-                        <Text style={Style.main.smallTitle}>{lastName}</Text>
-                        <Text style={Style.main.smallTitle}>{city}</Text>
+                        <View style={Style.main.leftColumn}>
+                        {image &&
+                          <Image source={{ uri: image }} style={Style.main.profilePic}/>
+                        }
+                        </View>
+                        <View style={Style.main.rightColumn}>
+                          <Text style={Style.main.smallTitle}>{firstName}</Text>
+                          <Text style={Style.main.smallTitle}>{lastName}</Text>
+                          <Text style={Style.main.smallTitle}>{city}</Text>
+                        </View>
                       </View>
                       <View style={Style.main.section}>
                         <Button style={Style.main.button} icon="edit" mode="contained" onPress={() => navigation.navigate('editProfile')}>Edit</Button>

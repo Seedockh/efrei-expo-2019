@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import Style from '../../styles';
 
 const Screen = ({ navigation }) => {
-    const [{ isLogged, firstName, lastName, city, id }, dispatch] = useStateValue();
+    const [{ isLogged, firstName, lastName, city, id, image }, dispatch] = useStateValue();
     const [editUser, { data: mutationData }] = useMutation(mutations.EDIT_USER);
 
     const editProfile = async () => {
@@ -23,13 +23,22 @@ const Screen = ({ navigation }) => {
         );
       }
 
+      if (!image) {
+        dispatch({
+            type: 'setState',
+            state: 'image',
+            value: 'https://lebonangle-bucket.s3.eu-west-3.amazonaws.com/images/icon.png'
+        });
+      }
+
       await editUser({
   			variables: {
           id,
   				data: {
   					firstname: firstName,
             lastname: lastName,
-            city
+            city,
+            image: image,
   				}
   			},
 		   });

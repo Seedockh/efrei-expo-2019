@@ -13,11 +13,11 @@ const Screen = ({ navigation }) => {
     const pickerData = useQuery(queries.GET_CATEGORIES, {fetchPolicy: "no-cache"}).data;
 
     const setState = (state, value) => {
-        return dispatch({
-            type: 'setState',
-            state,
-            value
-        })
+      return dispatch({
+          type: 'setState',
+          state,
+          value
+      })
     }
 
     return (

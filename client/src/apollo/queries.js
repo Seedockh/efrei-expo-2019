@@ -60,6 +60,7 @@ export const GET_POST = gql`
                 firstname
                 lastname
                 city
+                image
             }
           	category {
                 id

@@ -54,11 +54,12 @@ const Screen = ({ navigation }) => {
                       source={{ uri: data.post.image }}
                   />
                   <View style={Style.main.rowSection}>
+                    <Image source={{ uri: data.post.user.image }} style={Style.main.postUserImage}/>
                     <Text style={Style.main.textSkin}>{data.post.user.firstname} {data.post.user.lastname}</Text>
                     <Text style={Style.main.textRed}>{data.post.user.city}</Text>
                   </View>
                   <View style={Style.main.section}>
-                    <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('sellerProfile', { sellerId: data.post.user.id })}>Seller Profile</Button>
+                    <Button style={Style.main.button} icon="account-circle" mode="contained" onPress={() => navigation.navigate('view', { sellerId: data.post.user.id })}>Seller Profile</Button>
                   </View>
                   {data.post.user.id === id && (
                     <View style={Style.main.section}>

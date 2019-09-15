@@ -60,6 +60,7 @@ const main = StyleSheet.create({
   },
   userSection: {
     width: '80%',
+    flexDirection: 'row',
     backgroundColor: '#3b465c',
     justifyContent: 'center',
     alignItems: 'center',
@@ -69,8 +70,21 @@ const main = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: '#5f7195',
   },
+  leftColumn: {
+    width: '40%',
+  },
+  rightColumn: {
+    width: '40%',
+  },
   profilePic: {
-    height: 200,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+  },
+  postUserImage: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
   },
   bigTitle: {
     fontSize: 30,
