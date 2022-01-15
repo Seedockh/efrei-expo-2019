@@ -37,7 +37,7 @@
     "express": "^4.17.1",
     "graphql-tools": "^4.0.5",
     "graphql-yoga": "^1.18.3",
-    "marked": "^0.7.0",
+    "marked": "^4.0.10",
     "nodemon": "^1.19.2",
     "pg": "^7.12.1",
     "sequelize": "^5.18.4",
